@@ -4,21 +4,21 @@ import java.util.*;
 
 public class Entity {
 
-    private long id;
+    private Long id;
 
     public Entity(){
 
     }
 
-    public Entity(long id) {
+    public Entity(Long id) {
         this.id = id;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,9 +37,7 @@ public class Entity {
 
     @Override
     public String toString() {
-        return "Entity{" +
-                "id=" + id +
-                '}';
+        return "id=" + id + ',';
     }
 
     public static void main(String[] args) {

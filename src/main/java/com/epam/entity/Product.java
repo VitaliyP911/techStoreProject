@@ -14,7 +14,7 @@ public class Product extends Entity {
 
     }
 
-    public Product(long id, String name, BigDecimal price, Category category, Long guarantee) {
+    public Product(Long id, String name, BigDecimal price, Category category, Long guarantee) {
         super(id);
         this.name = name;
         this.price = price;

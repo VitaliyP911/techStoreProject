@@ -6,6 +6,8 @@ import java.util.Objects;
 public class User extends Entity{
 
     private String name;
+    private String surname;
+    private String email;
     private String password;
     private List<Basket> productList;
 
@@ -13,9 +15,26 @@ public class User extends Entity{
 
     }
 
-    public User(long id, String name, String password, List<Basket> productList) {
-        super(id);
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User(String name, String surname, String email, String password, List<Basket> productList) {
         this.name = name;
+        this.surname = surname;
+        this.email = email;
         this.password = password;
         this.productList = productList;
     }
@@ -51,19 +70,23 @@ public class User extends Entity{
         if (!super.equals(o)) return false;
         User user = (User) o;
         return Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(email, user.email) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(productList, user.productList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, password, productList);
+        return Objects.hash(super.hashCode(), name, surname, email, password, productList);
     }
 
     @Override
     public String toString() {
-        return "User{" + super.toString() +
+        return "User{" +
                 "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", productList=" + productList +
                 '}';
