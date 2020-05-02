@@ -8,13 +8,13 @@ public class Product extends Entity {
     private String name;
     private BigDecimal price;
     private Category category;
-    private Long guarantee;
+    private BigDecimal guarantee;
 
     public Product() {
 
     }
 
-    public Product(Long id, String name, BigDecimal price, Category category, Long guarantee) {
+    public Product(Long id, String name, BigDecimal price, Category category, BigDecimal guarantee) {
         super(id);
         this.name = name;
         this.price = price;
@@ -30,11 +30,11 @@ public class Product extends Entity {
         this.price = price;
     }
 
-    public Long getGuarantee() {
+    public BigDecimal getGuarantee() {
         return guarantee;
     }
 
-    public void setGuarantee(Long guarantee) {
+    public void setGuarantee(BigDecimal guarantee) {
         this.guarantee = guarantee;
     }
 
@@ -73,7 +73,7 @@ public class Product extends Entity {
 
     @Override
     public String toString() {
-        return "Product{" + super.toString() +
+        return "Product{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
                 ", category=" + category +
