@@ -1,40 +1,40 @@
 package com.epam.entity;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Objects;
 
 public class Product extends Entity {
 
     private String name;
-    private BigDecimal price;
+    private Integer price;
     private Category category;
-    private BigDecimal guarantee;
+    private Integer guarantee;
 
     public Product() {
 
     }
 
-    public Product(Long id, String name, BigDecimal price, Category category, BigDecimal guarantee) {
-        super(id);
+    public Product(String name, Integer price, Category category, Integer guarantee) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.guarantee = guarantee;
     }
 
-    public BigDecimal getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public BigDecimal getGuarantee() {
+    public Integer getGuarantee() {
         return guarantee;
     }
 
-    public void setGuarantee(BigDecimal guarantee) {
+    public void setGuarantee(Integer guarantee) {
         this.guarantee = guarantee;
     }
 

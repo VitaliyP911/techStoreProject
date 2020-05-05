@@ -3,25 +3,30 @@ package com.epam.dto;
 import com.epam.entity.Category;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 
-public class ProductDto {
+public class HistoryDto {
     private Long id;
-    private String name;
+    private String nameProduct;
     private Integer price;
     private Category category;
     private Integer guarantee;
+    private Long userID;
+    private Date date;
 
-    public ProductDto(){
+    public HistoryDto(){
 
     }
 
-    public ProductDto(Long id, String name, Integer price, Category category, Integer guarantee) {
+    public HistoryDto(Long id, String nameProduct, Integer price, Category category, Integer guarantee, Long userID, Date date) {
         this.id = id;
-        this.name = name;
+        this.nameProduct = nameProduct;
         this.price = price;
         this.category = category;
         this.guarantee = guarantee;
+        this.userID = userID;
+        this.date = date;
     }
 
     public Long getId() {
@@ -32,12 +37,12 @@ public class ProductDto {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameProduct() {
+        return nameProduct;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
     }
 
     public Integer getPrice() {
@@ -64,31 +69,51 @@ public class ProductDto {
         this.guarantee = guarantee;
     }
 
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductDto that = (ProductDto) o;
+        HistoryDto that = (HistoryDto) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
+                Objects.equals(nameProduct, that.nameProduct) &&
                 Objects.equals(price, that.price) &&
                 category == that.category &&
-                Objects.equals(guarantee, that.guarantee);
+                Objects.equals(guarantee, that.guarantee) &&
+                Objects.equals(userID, that.userID) &&
+                Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, category, guarantee);
+        return Objects.hash(id, nameProduct, price, category, guarantee, userID, date);
     }
 
     @Override
     public String toString() {
-        return "ProductDto{" +
+        return "HistoryDto{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", nameProduct='" + nameProduct + '\'' +
                 ", price=" + price +
                 ", category=" + category +
                 ", guarantee=" + guarantee +
+                ", userID=" + userID +
+                ", date=" + date +
                 '}';
     }
 }

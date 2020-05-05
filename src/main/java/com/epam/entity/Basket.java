@@ -11,8 +11,7 @@ public class Basket extends Entity{
 
     }
 
-    public Basket(Long id, Product product, Long count) {
-        super(id);
+    public Basket(Product product, Long count) {
         this.product = product;
         this.count = count;
     }

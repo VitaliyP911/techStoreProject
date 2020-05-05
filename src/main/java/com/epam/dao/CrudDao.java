@@ -1,20 +1,19 @@
 package com.epam.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudDao<T> {
+public interface CrudDao<TEntity> {
 
-    Optional<T> getById(Long id) throws SQLException;
+    Optional<TEntity> getById(Long id);
 
-    Optional<T> getByField(Object field) throws SQLException;
+    Optional<TEntity> getByField(String field);
 
-    List<T> getAll();
+    List<TEntity> getAll();
 
-    boolean save(T entity);
+    boolean save(TEntity entity);
 
     boolean delete(Long id);
 
-    boolean update(Long id, T entity);
+    boolean update(Long id, TEntity entity);
 }
