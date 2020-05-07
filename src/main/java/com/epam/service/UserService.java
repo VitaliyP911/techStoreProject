@@ -1,0 +1,14 @@
+package com.epam.service;
+
+import com.epam.entity.User;
+
+public interface UserService {
+
+    boolean login(String login, String password);
+
+    boolean changePassword(String newPassword, String password, String login);
+
+    boolean save(User user);
+
+    boolean delete(Long id);
+}
