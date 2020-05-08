@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean changePassword(String newPassword, String password, String email) {
+    public boolean changePassword(String newPassword, String email) {
 
         User user = userCrudDao.getByField(email).get();
 

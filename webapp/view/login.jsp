@@ -13,9 +13,24 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <body>
 
+<%
+   String status = (String) request.getAttribute("status");
+
+   if(status == "Incorrect password"){
+       request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
+               "            <strong>Warning!</strong> Incorrect password!\n" +
+               "        </div>");
+   }
+   if(status == "There is no such user"){
+    request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
+            "            <strong>Warning!</strong> There is no such user!\n" +
+            "        </div>");
+    }
+%>
+
 <div class="container">
     <form action="${pageContext.request.contextPath}/login" method="post">
-        <p>${status}</p>
+        <p>${statusText}</p>
         <h2>Login</h2>
         <div class="form-group">
             <label for="email">Email:</label>
@@ -26,11 +41,11 @@
             <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
         </div>
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-10">
                 <input type="submit" value="Log in" class="btn btn-dark"/>
             </div>
-            <div class="col-sm-3">
-                <input type="button" value="Forgot your password?" class="btn btn-link"/>
+            <div class="col-sm-2">
+                <input type="button" value="Forgot your password?" class="btn btn-link" onclick="window.location.href='${pageContext.request.contextPath}/view/changePassword.jsp'" />
             </div>
         </div>
     </form>

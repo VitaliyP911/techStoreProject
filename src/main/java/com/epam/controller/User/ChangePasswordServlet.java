@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "LoginServlet", urlPatterns = ServletURL.LOGIN)
-public class LoginServlet extends HttpServlet {
-
+@WebServlet(name = "ChangePasswordServlet", urlPatterns = ServletURL.CHANGE_PASSWORD)
+public class ChangePasswordServlet extends HttpServlet {
     private UserService userService;
 
     @Override
@@ -24,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(JspURL.LOGIN_PAGE).forward(request,response);
+        request.getRequestDispatcher(JspURL.CHANGE_PASSWORD_PAGE).forward(request,response);
     }
 
     @Override
@@ -32,17 +31,15 @@ public class LoginServlet extends HttpServlet {
 
         try {
             String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            String newPassword = request.getParameter("newPassword");
 
-            if (userService.login(email, password)) {
-                request.getRequestDispatcher(JspURL.LOGIN_PAGE).forward(request, response);
-            } else {
-                request.setAttribute("status", "Incorrect password");
-                doGet(request, response);
+            if (userService.changePassword(newPassword, email)) {
+                request.setAttribute("status", "Password changed");
             }
+
         }catch (RuntimeException e){
             request.setAttribute("status", "There is no such user");
-            doGet(request,response);
         }
+        doGet(request,response);
     }
 }

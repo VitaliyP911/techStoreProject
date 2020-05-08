@@ -6,7 +6,7 @@ public interface UserService {
 
     boolean login(String login, String password);
 
-    boolean changePassword(String newPassword, String password, String login);
+    boolean changePassword(String newPassword, String login);
 
     boolean save(User user);
 
