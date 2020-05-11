@@ -1,6 +1,8 @@
 package com.epam.dao;
 
 import com.epam.db.ConnectionDB;
+import com.epam.exception.NotSaveException;
+import com.epam.exception.NotUpdateException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -84,6 +86,7 @@ public abstract class CrudDaoImpl<TEntity> implements CrudDao<TEntity> {
             flag = true;
         }catch(SQLException ex) {
             ex.printStackTrace();
+            throw new NotSaveException("Not save");
         }
         return flag;
     }
@@ -98,6 +101,7 @@ public abstract class CrudDaoImpl<TEntity> implements CrudDao<TEntity> {
             flag = true;
         }catch(SQLException ex) {
             ex.printStackTrace();
+
         }
         return flag;
     }
@@ -118,6 +122,7 @@ public abstract class CrudDaoImpl<TEntity> implements CrudDao<TEntity> {
             flag = true;
         }catch(SQLException ex) {
             ex.printStackTrace();
+            throw new NotUpdateException("Not Update");
         }
         return flag;
     }

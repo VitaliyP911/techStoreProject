@@ -16,16 +16,11 @@
 <%
    String status = (String) request.getAttribute("status");
 
-   if(status == "Incorrect password"){
+   if(status == "Incorrect email or password"){
        request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
-               "            <strong>Warning!</strong> Incorrect password!\n" +
+               "            <strong>Warning!</strong> Incorrect email or password!\n" +
                "        </div>");
    }
-   if(status == "There is no such user"){
-    request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
-            "            <strong>Warning!</strong> There is no such user!\n" +
-            "        </div>");
-    }
 %>
 
 <div class="container">

@@ -11,4 +11,8 @@ public interface UserService {
     boolean save(User user);
 
     boolean delete(Long id);
+
+    boolean addNewUser(User user);
+
+    boolean checkForSimilarityOfEmails(String email);
 }

@@ -2,6 +2,7 @@ package com.epam.controller.User;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
+import com.epam.entity.User;
 import com.epam.exception.IncorrectDataException;
 import com.epam.service.UserService;
 import com.epam.service.impl.UserServiceImpl;
@@ -13,8 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ChangePasswordServlet", urlPatterns = ServletURL.CHANGE_PASSWORD)
-public class ChangePasswordServlet extends HttpServlet {
+@WebServlet(name = "RegistrationServlet", urlPatterns = ServletURL.REGISTRATION)
+public class RegistrationServlet extends HttpServlet {
+
     private UserService userService;
 
     @Override
@@ -24,25 +26,29 @@ public class ChangePasswordServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(JspURL.CHANGE_PASSWORD_PAGE).forward(request,response);
+        request.getRequestDispatcher(JspURL.REGISTRATION_PAGE).forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
+            String name = request.getParameter("name");
+            String surname = request.getParameter("surname");
             String email = request.getParameter("email");
-            String newPassword = request.getParameter("newPassword");
+            String password = request.getParameter("password");
 
-            if (userService.changePassword(newPassword, email)) {
-                request.setAttribute("status", "Password changed");
-            }else {
-                throw new IncorrectDataException("Incorrect email");
+            if (!userService.checkForSimilarityOfEmails(email) && userService.addNewUser(new User(name, surname, email, password))) {
+                request.setAttribute("status", "Success");
+                doGet(request,response);
+            }else{
+                throw new IncorrectDataException("Incorrect data");
             }
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect email");
+            request.setAttribute("status", "Incorrect data");
+            doGet(request,response);
         }
-        doGet(request,response);
+
     }
 }

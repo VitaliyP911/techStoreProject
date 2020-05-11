@@ -2,6 +2,7 @@ package com.epam.controller.User;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
+import com.epam.exception.IncorrectDataException;
 import com.epam.service.UserService;
 import com.epam.service.impl.UserServiceImpl;
 
@@ -37,11 +38,10 @@ public class LoginServlet extends HttpServlet {
             if (userService.login(email, password)) {
                 request.getRequestDispatcher(JspURL.LOGIN_PAGE).forward(request, response);
             } else {
-                request.setAttribute("status", "Incorrect password");
-                doGet(request, response);
+                throw new IncorrectDataException("Incorrect email or password");
             }
         }catch (RuntimeException e){
-            request.setAttribute("status", "There is no such user");
+            request.setAttribute("status", "Incorrect email or password");
             doGet(request,response);
         }
     }

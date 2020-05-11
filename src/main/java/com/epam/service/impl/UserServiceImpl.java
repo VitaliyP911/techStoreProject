@@ -3,9 +3,14 @@ package com.epam.service.impl;
 import com.epam.dao.CrudDaoImpl;
 import com.epam.dao.impl.UserDaoImpl;
 import com.epam.entity.User;
+import com.epam.exception.NotSaveException;
 import com.epam.service.UserService;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class UserServiceImpl implements UserService {
@@ -35,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean save(User user) {
+    public boolean save(User user) throws NotSaveException {
         return userCrudDao.save(user);
     }
 
@@ -44,4 +49,21 @@ public class UserServiceImpl implements UserService {
         return userCrudDao.delete(id);
     }
 
+    @Override
+    public boolean addNewUser(User user) {
+        return userCrudDao.save(user);
+    }
+
+    @Override
+    public boolean checkForSimilarityOfEmails(String email) {
+        return userCrudDao.getAll().stream()
+                .map(User::getEmail)
+                .collect(Collectors.toList())
+                .contains(email);
+    }
+
+    public static void main(String[] args) {
+        UserService userService = new UserServiceImpl();
+        System.out.println(userService.checkForSimilarityOfEmails("vitaliy.polishchuk11@gmail.com"));
+            }
 }

@@ -16,7 +16,7 @@
     <h1>Welcome to the tech store!</h1>
     <p>Here you can buy any technique for your taste.</p>
     <button type="button" class="btn btn-dark" onclick="window.location.href='${pageContext.request.contextPath}/view/login.jsp'">Log in</button>
-    <button type="button" class="btn btn-outline-dark">Sing in</button>
+    <button type="button" class="btn btn-outline-dark" onclick="window.location.href='${pageContext.request.contextPath}/view/registration.jsp'">Sing in</button>
 </div>
 
 <div class="container">
