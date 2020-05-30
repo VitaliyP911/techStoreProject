@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = ServletURL.LOGIN)
@@ -32,11 +33,14 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
+
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
             if (userService.login(email, password)) {
-                request.getRequestDispatcher(JspURL.LOGIN_PAGE).forward(request, response);
+                HttpSession session = request.getSession();
+                session.setAttribute("user", userService.getDataUser(email).get());
+                request.getRequestDispatcher(JspURL.HOME_PAGE).forward(request, response);
             } else {
                 throw new IncorrectDataException("Incorrect email or password");
             }

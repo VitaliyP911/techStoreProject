@@ -2,6 +2,8 @@ package com.epam.service;
 
 import com.epam.entity.User;
 
+import java.util.Optional;
+
 public interface UserService {
 
     boolean login(String login, String password);
@@ -15,4 +17,8 @@ public interface UserService {
     boolean addNewUser(User user);
 
     boolean checkForSimilarityOfEmails(String email);
+
+    boolean checkAdmin(String email);
+
+    Optional<User> getDataUser(String email);
 }

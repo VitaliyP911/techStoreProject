@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 07.05.2020
-  Time: 16:51
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.epam.constant.JspURL" %>
+<%@ page import="com.epam.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,6 +14,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <body>
 <%
+
+    User user = (User) session.getAttribute("user");
+    if(user != null){
+        response.sendRedirect(JspURL.HOME_PAGE);
+    }
+
+
     String status = (String) request.getAttribute("status");
 
     if(status == "Incorrect email"){
@@ -32,33 +34,41 @@
                 "        </div>");
     }
 %>
-<div class="container">
+<div class="container p-3 my-3 bg-light text-dark  border border-top-secondary" style="width:25%">
     <form action="${pageContext.request.contextPath}/registration" method="post">
         <p>${statusText}</p>
         <h2>Registration</h2>
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
-        </div>
-        <div class="form-group">
-            <label for="surname">Surname:</label>
-            <input type="surname" class="form-control" id="surname" placeholder="Enter surname" name="surname">
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-        </div>
-        <div class="row">
-            <div class="col-sm-10">
-                <input type="submit" value="Sing in" class="btn btn-dark"/>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Name</span>
             </div>
-            <div class="col-sm-2">
-                <input type="button" value="Back to home page" class="btn btn-link" onclick="window.location.href='${pageContext.request.contextPath}/WEB-INF/index.jsp'" />
+            <input type="name" class="form-control" id="name" name="name">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Surname</span>
             </div>
+            <input  type="surname" class="form-control" id="surname" name="surname">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Email</span>
+            </div>
+            <input  type="email" class="form-control" id="email" name="email">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Password</span>
+            </div>
+            <input  type="password" class="form-control" id="pwd" name="password">
+        </div>
+        <input type="submit" value="Sing in" class="btn btn-dark"/>
+        <div class="float-right">
+            <input type="button" value="Go to login page" class="btn btn-link" href="${pageContext.request.contextPath}/view/login.jsp" />
         </div>
     </form>
 </div>

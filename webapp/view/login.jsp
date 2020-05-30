@@ -14,34 +14,41 @@
 <body>
 
 <%
-   String status = (String) request.getAttribute("status");
 
-   if(status == "Incorrect email or password"){
-       request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
-               "            <strong>Warning!</strong> Incorrect email or password!\n" +
-               "        </div>");
-   }
+    User user = (User) session.getAttribute("user");
+    if(user != null){
+        response.sendRedirect(JspURL.HOME_PAGE);
+    }
+
+    String status = (String) request.getAttribute("status");
+
+    if(status == "Incorrect email or password"){
+        request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
+                "            <strong>Warning!</strong> Incorrect email or password!\n" +
+                "        </div>");
+    }
 %>
 
-<div class="container">
+<div class="container p-3 my-3 bg-light text-dark  border border-top-secondary" style="width:25%">
     <form action="${pageContext.request.contextPath}/login" method="post">
         <p>${statusText}</p>
         <h2>Login</h2>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-        </div>
-        <div class="row">
-            <div class="col-sm-10">
-                <input type="submit" value="Log in" class="btn btn-dark"/>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Email</span>
             </div>
-            <div class="col-sm-2">
-                <input type="button" value="Forgot your password?" class="btn btn-link" onclick="window.location.href='${pageContext.request.contextPath}/view/changePassword.jsp'" />
+            <input  type="email" class="form-control" id="email" name="email">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Password</span>
             </div>
+            <input  type="password" class="form-control" id="pwd" name="password">
+        </div>
+        <input type="submit" value="Log in" class="btn btn-dark"/>
+        <div class="float-right">
+            <a type="button" class="btn btn-link" href="${pageContext.request.contextPath}/view/changePassword.jsp">Forgot your password?</a>
         </div>
     </form>
 </div>

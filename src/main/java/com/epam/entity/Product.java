@@ -1,7 +1,5 @@
 package com.epam.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 public class Product extends Entity {

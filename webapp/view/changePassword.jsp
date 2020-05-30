@@ -26,31 +26,26 @@
                 "            <strong>Warning!</strong> Incorrect email!\n" +
                 "        </div>");
     }
-    if(status == "Password changed"){
-        request.setAttribute("statusText", "<div class=\"alert alert-success\">\n" +
-                "            <strong>Success!</strong> Password changed!\n" +
-                "        </div>");
-    }
 %>
-<div class="container">
+<div class="container p-3 my-3 bg-light text-dark  border border-top-secondary " style="width:25%">
     <form action="${pageContext.request.contextPath}/changePassword" method="post">
         <p>${statusText}</p>
         <h2>Change password</h2>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-        </div>
-        <div class="form-group">
-            <label for="new pwd">New password:</label>
-            <input type="password" class="form-control" id="new pwd" placeholder="Enter new password" name="newPassword">
-        </div>
-        <div class="row">
-            <div class="col-sm-10">
-                <input type="submit" value="Change password" class="btn btn-dark"/>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Email</span>
             </div>
-            <div class="col-sm-2">
-                <input type="button" value="Back to login page" class="btn btn-link" onclick="window.location.href='${pageContext.request.contextPath}/view/login.jsp'" />
+            <input  type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">New password</span>
             </div>
+            <input  type="password" class="form-control" id="new pwd" name="newPassword">
+        </div>
+        <input type="submit" value="Change password" class="btn btn-dark"/>
+        <div class="float-right">
+            <a type="button" class="btn btn-link" href="${pageContext.request.contextPath}/view/login.jsp">Back to login page</a>
         </div>
     </form>
 </div>
