@@ -12,11 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "RegistrationServlet", urlPatterns = ServletURL.REGISTRATION)
-public class RegistrationServlet extends HttpServlet {
-
+@WebServlet(name = "DeleteAccountServlet", urlPatterns = ServletURL.DELETE_ACCOUNT)
+public class DeleteAccountServlet extends HttpServlet {
     private UserService userService;
 
     @Override
@@ -26,31 +26,23 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(JspURL.REGISTRATION_PAGE).forward(request,response);
+        request.getRequestDispatcher(JspURL.LOG_OUT_PAGE).forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            String name = request.getParameter("name");
-            String surname = request.getParameter("surname");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-        if(name !="" && surname !="" && email !="" && password !="") {
-            if (!userService.checkForSimilarityOfEmails(email) && userService.addNewUser(new User(name, surname, email, password))) {
-                request.setAttribute("status", "Success");
-                doGet(request, response);
+            User user = (User) request.getSession().getAttribute("user");
+            if (userService.delete(user.getId())) {
+                request.getRequestDispatcher(JspURL.LOG_OUT_PAGE).forward(request,response);
+
             } else {
-                throw new IncorrectDataException("Incorrect data");
+                throw new IncorrectDataException("Incorrect email or password");
             }
-        }else{
-            throw new IncorrectDataException("Incorrect data");
-        }
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect data");
+            request.setAttribute("status", "Incorrect email or password");
             doGet(request,response);
         }
-
     }
 }

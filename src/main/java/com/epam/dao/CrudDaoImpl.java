@@ -1,6 +1,7 @@
 package com.epam.dao;
 
 import com.epam.db.ConnectionDB;
+import com.epam.entity.User;
 import com.epam.exception.NotSaveException;
 import com.epam.exception.NotUpdateException;
 
@@ -132,4 +133,6 @@ public abstract class CrudDaoImpl<TEntity> implements CrudDao<TEntity> {
     protected abstract PreparedStatement setFields(PreparedStatement statement, TEntity entity);
 
     protected abstract void init();
+
+
 }

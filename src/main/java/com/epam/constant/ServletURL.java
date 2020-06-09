@@ -4,5 +4,6 @@ public interface ServletURL {
     String LOGIN = "/login";
     String CHANGE_PASSWORD = "/changePassword";
     String REGISTRATION = "/registration";
-    String PROFILE = "/profile";
+    String PROFILE_SETTINGS = "/profileSettings";
+    String DELETE_ACCOUNT = "/deleteAccount";
 }

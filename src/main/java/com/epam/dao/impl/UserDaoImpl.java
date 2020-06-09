@@ -17,6 +17,7 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
     private static final String UPDATE_BY_ID = "UPDATE users SET name = ?, surname =?, email = ?, password = ? WHERE ID = ?";
     private static final String UPDATE_BY_FIELD = "UPDATE users SET name = ?, surname =?, password = ? WHERE email = ?";
     private static final String DELETE_BY_ID = "DELETE FROM users WHERE ID = ?;";
+    private static final String DELETE_BY_FIELD = "DELETE FROM users WHERE email = ?;";
 
     protected User getFields(ResultSet resultSet) {
         User user = new User();
@@ -52,7 +53,11 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
         sqlQuary.put("GET_ALL", GET_ALL);
         sqlQuary.put("INSERT", INSERT);
         sqlQuary.put("UPDATE_BY_ID", UPDATE_BY_ID);
+        sqlQuary.put("UPDATE_BY_FIELD", UPDATE_BY_FIELD);
         sqlQuary.put("DELETE_BY_ID", DELETE_BY_ID);
+        sqlQuary.put("DELETE_BY_FIELD", DELETE_BY_FIELD);
+
     }
+
 
 }

@@ -26,15 +26,12 @@
     }
 %>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
     <a class="navbar-brand" href="#">MENU</a>
 
-    <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -57,9 +54,6 @@
 
 <div class="container p-3 my-3 bg-light text-dark" >
 
-</div>
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <p>Footer</p>
 </div>
 
 </body>

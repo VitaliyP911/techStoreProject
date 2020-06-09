@@ -20,10 +20,9 @@
         response.sendRedirect(JspURL.HOME_PAGE);
     }
 
-
     String status = (String) request.getAttribute("status");
 
-    if(status == "Incorrect email"){
+    if(status == "Incorrect data"){
         request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
                 "            <strong>Warning!</strong> Failed, account cannot be created!\n" +
                 "        </div>");
@@ -68,7 +67,7 @@
         </div>
         <input type="submit" value="Sing in" class="btn btn-dark"/>
         <div class="float-right">
-            <input type="button" value="Go to login page" class="btn btn-link" href="${pageContext.request.contextPath}/view/login.jsp" />
+            <a type="button" class="btn btn-light"  href="${pageContext.request.contextPath}/view/login.jsp" >Go to login page</a>
         </div>
     </form>
 </div>

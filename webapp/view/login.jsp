@@ -48,7 +48,7 @@
         </div>
         <input type="submit" value="Log in" class="btn btn-dark"/>
         <div class="float-right">
-            <a type="button" class="btn btn-link" href="${pageContext.request.contextPath}/view/changePassword.jsp">Forgot your password?</a>
+            <a type="button" class="btn btn-light" href="${pageContext.request.contextPath}/view/changePassword.jsp">Forgot your password?</a>
         </div>
     </form>
 </div>

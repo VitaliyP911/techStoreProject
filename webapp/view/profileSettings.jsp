@@ -75,20 +75,15 @@
                         </div>
                         <input  type="password" class="form-control" id="pwd" placeholder="${user.password}" name="password">
                     </div>
-                    <center>
-                        <div class="btn-group btn-group-lg" style="width:45%">
-                            <input type="submit" value="Save" class="btn btn-dark"/>
-
-                        </div>
-                    </center>
-                </div>
-            </form>
-            <form action="${pageContext.request.contextPath}/deleteAccount" method="post">
-                <center>
-                    <div class="btn-group btn-group-lg" style="width:40%">
-                        <input type="submit" value="Delete" class="btn btn-danger"/>
+                    <div class="btn-group btn-group-lg">
+                        <input type="submit" value="Save" class="btn btn-dark"/>
                     </div>
-                </center>
+                    <form action="${pageContext.request.contextPath}/deleteAccount" method="post">
+                        <div class="float-right btn-group btn-group-lg">
+                            <input type="submit" value="Delete" class="btn btn-danger"/>
+                        </div>
+                    </form>
+                </div>
             </form>
 
         </div>

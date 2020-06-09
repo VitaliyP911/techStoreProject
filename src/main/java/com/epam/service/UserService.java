@@ -12,6 +12,8 @@ public interface UserService {
 
     boolean save(User user);
 
+    boolean update(Long id, User user);
+
     boolean delete(Long id);
 
     boolean addNewUser(User user);

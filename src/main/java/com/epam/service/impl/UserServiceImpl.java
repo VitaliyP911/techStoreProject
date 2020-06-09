@@ -1,9 +1,12 @@
 package com.epam.service.impl;
 
+import com.epam.dao.CrudDao;
 import com.epam.dao.CrudDaoImpl;
 import com.epam.dao.impl.AdminDaoImpl;
+import com.epam.dao.impl.HistoryDaoImpl;
 import com.epam.dao.impl.UserDaoImpl;
 import com.epam.entity.Admin;
+import com.epam.entity.History;
 import com.epam.entity.User;
 import com.epam.exception.NotSaveException;
 import com.epam.service.UserService;
@@ -47,7 +50,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean update(Long id ,User user) {
+        return userCrudDao.update(id, user);
+    }
+
+    @Override
     public boolean delete(Long id) {
+
+        CrudDao<History> historyCrudDao = new HistoryDaoImpl();
+
+        historyCrudDao.delete(id);
+
         return userCrudDao.delete(id);
     }
 
