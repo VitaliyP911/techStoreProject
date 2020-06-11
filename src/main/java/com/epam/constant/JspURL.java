@@ -8,4 +8,5 @@ public interface JspURL {
     String PROFILE_PAGE = "/view/profile.jsp";
     String PROFILE_SETTINGS_PAGE = "/view/profileSettings.jsp";
     String LOG_OUT_PAGE = "/view/logout.jsp";
+    String CATALOG_PAGE = "/view/catalog.jsp";
 }

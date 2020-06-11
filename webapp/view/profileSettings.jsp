@@ -32,13 +32,13 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/view/home.jsp">Head</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Head</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/view/profile.jsp">My profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My profile</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/catalog">Catalog</a>
             </li>
         </ul>
     </div>
@@ -75,15 +75,20 @@
                         </div>
                         <input  type="password" class="form-control" id="pwd" placeholder="${user.password}" name="password">
                     </div>
-                    <div class="btn-group btn-group-lg">
-                        <input type="submit" value="Save" class="btn btn-dark"/>
-                    </div>
-                    <form action="${pageContext.request.contextPath}/deleteAccount" method="post">
-                        <div class="float-right btn-group btn-group-lg">
-                            <input type="submit" value="Delete" class="btn btn-danger"/>
+                    <center>
+                        <div class="btn-group btn-group-lg" style="width:45%">
+                            <input type="submit" value="Save" class="btn btn-dark"/>
+
                         </div>
-                    </form>
+                    </center>
                 </div>
+            </form>
+            <form action="${pageContext.request.contextPath}/deleteAccount" method="post">
+                <center>
+                    <div class="btn-group btn-group-lg" style="width:40%">
+                        <input type="submit" value="Delete" class="btn btn-danger"/>
+                    </div>
+                </center>
             </form>
 
         </div>

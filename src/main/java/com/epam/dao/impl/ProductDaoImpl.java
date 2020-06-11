@@ -13,9 +13,9 @@ public class ProductDaoImpl  extends CrudDaoImpl<Product>{
     private static final String GET_BY_ID = "SELECT * FROM products WHERE ID = ?;";
     private static final String GET_BY_FIELD = "SELECT * FROM products WHERE name = ?;";
     private static final String GET_ALL = "SELECT * FROM products;";
-    private static final String INSERT = "INSERT INTO products (name, price, guarantee, category)" +
-            " VALUES (?, ?, ?, ?);";
-    private static final String UPDATE_BY_ID = "UPDATE products SET name = ?, price = ?, guarantee = ?, category = ? WHERE ID = ?";
+    private static final String INSERT = "INSERT INTO products (name,name_company, price, guarantee, category)" +
+            " VALUES (?, ?, ?, ?, ?);";
+    private static final String UPDATE_BY_ID = "UPDATE products SET name = ?, name_company = ?, price = ?, guarantee = ?, category = ? WHERE ID = ?";
     private static final String UPDATE_BY_FIELD = "UPDATE products SET price = ?, guarantee = ?, category = ? WHERE name = ?";
     private static final String DELETE_BY_ID = "DELETE FROM products WHERE ID = ?;";
 
@@ -27,6 +27,7 @@ public class ProductDaoImpl  extends CrudDaoImpl<Product>{
         try {
             product.setId(resultSet.getLong("ID"));
             product.setName(resultSet.getString("name"));
+            product.setNameCompany(resultSet.getString("name_company"));
             product.setPrice(resultSet.getInt("price"));
             product.setGuarantee(resultSet.getInt("guarantee"));
             product.setCategory(Category.valueOf(resultSet.getString("category")));
@@ -42,9 +43,10 @@ public class ProductDaoImpl  extends CrudDaoImpl<Product>{
 
         try {
             statement.setString(1, entity.getName());
-            statement.setInt(2, entity.getPrice());
-            statement.setInt(3, entity.getGuarantee());
-            statement.setString(4,  entity.getCategory().getNameCategory());
+            statement.setString(2, entity.getNameCompany());
+            statement.setInt(3, entity.getPrice());
+            statement.setInt(4, entity.getGuarantee());
+            statement.setString(5,  entity.getCategory().getNameCategory());
         }catch (SQLException e){
             e.printStackTrace();
         }

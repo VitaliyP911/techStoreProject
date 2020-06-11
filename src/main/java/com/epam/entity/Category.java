@@ -1,13 +1,19 @@
 package com.epam.entity;
 
+import java.lang.annotation.Target;
+
 public enum Category {
     Phone("Phones"),
     Computer("Computers"),
-    Gadget("Gadgets"),
+    SmartGadget("Smart gadgets"),
     AudioTechnology("Audio technology"),
-    Appliances("Appliances"),
+    KitchenAppliances("Kitchen appliances"),
     Laptop("Laptops"),
-    TV("TV");
+    TV("TV"),
+    Camera("Cameras"),
+    Tablet("Tablets"),
+    ForGamers("For gamers");
+
 
     private String nameCategory;
 

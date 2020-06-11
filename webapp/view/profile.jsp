@@ -32,64 +32,64 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/view/home.jsp">Head</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Head</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/view/profile.jsp">My profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My profile</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/catalog">Catalog</a>
             </li>
         </ul>
     </div>
 </nav>
 <br>
 <div class="container" style="width:35%">
-    <div class="card bg-dark text-white text-center">
+    <div class="card bg-dark text-white text-center ">
         <div class="card-body">
-            <h1 class="">Profile settings</h1>
+            <h1 class="">My profile</h1>
         </div>
     </div>
     <br>
     <div class="card bg-light text-dark">
         <div class="card-body">
-            <form action="${pageContext.request.contextPath}/profileSettings" method="post">
-                <div class="container-fluid">
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Name</span>
-                        </div>
-                        <input  type="name" class="form-control" id="name" placeholder="${user.name}" name="name">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Surname</span>
-                        </div>
-                        <input  type="surname" class="form-control" id="surname" placeholder="${user.surname}" name="surname">
-                    </div>
+            <div class="container-fluid">
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Password</span>
-                        </div>
-                        <input  type="password" class="form-control" id="pwd" placeholder="${user.password}" name="password">
+                <div class="row align-items-center">
+                    <div class="col-4 bg-dark  text-white">
+                        <h4>Name</h4>
                     </div>
-                    <center>
-                        <div class="btn-group btn-group-lg" style="width:45%">
-                            <input type="submit" value="Save" class="btn btn-dark"/>
-
-                        </div>
-                    </center>
+                    <div class="col-8 bg-light text-dark">
+                        <h4>${user.name}</h4>
+                    </div>
                 </div>
-            </form>
-            <form action="${pageContext.request.contextPath}/deleteAccount" method="post">
-                <center>
-                    <div class="btn-group btn-group-lg" style="width:40%">
-                        <input type="submit" value="Delete" class="btn btn-danger"/>
+                <br>
+                <div class="row align-items-center">
+                    <div class="col-4 bg-dark  text-white">
+                        <h4>Surname</h4>
                     </div>
+                    <div class="col-8 bg-light text-dark">
+                        <h4>${user.surname}</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row align-items-center">
+                    <div class="col-4 bg-dark  text-white">
+                        <h4>Email</h4>
+                    </div>
+                    <div class="col-8 bg-light text-dark">
+                        <h4>${user.email}</h4>
+                    </div>
+                </div>
+                <br>
+                <center>
+                <div class="btn-group btn-group-lg" style="width:65%">
+                    <a type="button" class="btn btn-dark"  href="${pageContext.request.contextPath}/view/profileSettings.jsp">Profile settings</a>
+                    <a type="button" class="btn btn-light"  href="${pageContext.request.contextPath}/view/logout.jsp" >Log out</a>
+                </div>
                 </center>
-            </form>
+            </div>
 
         </div>
     </div>

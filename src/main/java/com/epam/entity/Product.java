@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Product extends Entity {
 
     private String name;
+    private String nameCompany;
     private Integer price;
     private Category category;
     private Integer guarantee;
@@ -13,11 +14,22 @@ public class Product extends Entity {
 
     }
 
-    public Product(String name, Integer price, Category category, Integer guarantee) {
+    public Product(String name, String nameCompany,
+                   Integer price, Category category,
+                   Integer guarantee) {
         this.name = name;
+        this.nameCompany = nameCompany;
         this.price = price;
         this.category = category;
         this.guarantee = guarantee;
+    }
+
+    public String getNameCompany() {
+        return nameCompany;
+    }
+
+    public void setNameCompany(String nameCompany) {
+        this.nameCompany = nameCompany;
     }
 
     public Integer getPrice() {
@@ -59,6 +71,7 @@ public class Product extends Entity {
         if (!super.equals(o)) return false;
         Product product = (Product) o;
         return Objects.equals(name, product.name) &&
+                Objects.equals(nameCompany, product.nameCompany) &&
                 Objects.equals(price, product.price) &&
                 category == product.category &&
                 Objects.equals(guarantee, product.guarantee);
@@ -66,13 +79,14 @@ public class Product extends Entity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, price, category, guarantee);
+        return Objects.hash(super.hashCode(), name, nameCompany, price, category, guarantee);
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "name='" + name + '\'' +
+                ", nameCompany='" + nameCompany + '\'' +
                 ", price=" + price +
                 ", category=" + category +
                 ", guarantee=" + guarantee +
