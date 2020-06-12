@@ -61,6 +61,50 @@
     </div>
     </center>
     <br>
+    ${sort}
+    <center>
+        <div id="accordion" class="card bg-dark text-white" style="width:35%">
+            <div class="card bg-dark text-white">
+                <div class="card-header" >
+                    <a class="card-link text-white" data-toggle="collapse" href="#collapseOne">
+                        <center><h4>Sorting (click)</h4></center>
+                    </a>
+                </div>
+                <div id="collapseOne" class="collapse" data-parent="#accordion">
+                    <div class="card-body bg-light text-dark">
+                        <form action="${pageContext.request.contextPath}/sorted" method="post">
+                            <select name="company" class="custom-select mb-3">
+                                <option value="" selected>Company</option>
+                                <option>Apple</option>
+                                <option>Samsung</option>
+                                <option>DELL</option>
+                            </select>
+                            <select name="price" class="custom-select mb-3">
+                                <option value="" selected>Price</option>
+                                <option value="larger">From larger to smaller</option>
+                                <option value="smaller">From smaller to larger</option>
+                            </select>
+                            <select name="category" class="custom-select mb-3">
+                                <option value="" selected>Category</option>
+                                <option>Phones</option>
+                                <option>Computers</option>
+                                <option>Smart gadgets</option>
+                                <option>Audio technology</option>
+                                <option>Kitchen appliances</option>
+                                <option>Laptops</option>
+                                <option>TV</option>
+                                <option>Cameras</option>
+                                <option>Tablets</option>
+                                <option>For games</option>
+                            </select>
+                            <button type="submit" class="btn btn-dark">Sort</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+    <br>
     <table class = "table table-striped table-bordered" id="datatable">
         <thead class="thead-dark">
         <tr>
@@ -86,6 +130,10 @@
         </c:forEach>
         </tbody>
     </table>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>TechStore | Copyright 2020</p>
 </div>
 
 </body>

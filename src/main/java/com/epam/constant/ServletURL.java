@@ -7,4 +7,5 @@ public interface ServletURL {
     String PROFILE_SETTINGS = "/profileSettings";
     String DELETE_ACCOUNT = "/deleteAccount";
     String CATALOG = "/catalog";
+    String SORTED = "/sorted";
 }

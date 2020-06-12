@@ -94,5 +94,8 @@
         </div>
     </div>
 </div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>TechStore | Copyright 2020</p>
+</div>
 </body>
 </html>
