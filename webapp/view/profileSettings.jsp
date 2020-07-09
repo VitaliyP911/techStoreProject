@@ -21,6 +21,7 @@
         response.sendRedirect(JspURL.LOGIN_PAGE);
     }
 
+
 %>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a class="navbar-brand" href="#">MENU</a>
@@ -35,7 +36,7 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/view/home.jsp">Head</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/view/profile.jsp">My profile</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/checkAdmin">My profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/catalog">Catalog</a>
@@ -75,25 +76,28 @@
                         </div>
                         <input  type="password" class="form-control" id="pwd" placeholder="${user.password}" name="password">
                     </div>
+
+
                     <center>
                         <div class="btn-group btn-group-lg" style="width:45%">
                             <input type="submit" value="Save" class="btn btn-dark"/>
-
+                            <a type="button" class="btn btn-outline-danger"  href="${pageContext.request.contextPath}/view/deleteAccount.jsp" >Delete</a>
                         </div>
                     </center>
                 </div>
             </form>
-            <form action="${pageContext.request.contextPath}/deleteAccount" method="post">
+            <%--<form action="${pageContext.request.contextPath}/deleteAccount" method="post">
                 <center>
                     <div class="btn-group btn-group-lg" style="width:40%">
-                        <input type="submit" value="Delete" class="btn btn-danger"/>
+                        <input type="submit" value="Delete" class="btn btn-outline-danger"/>
                     </div>
                 </center>
-            </form>
+            </form>--%>
 
         </div>
     </div>
 </div>
+<br>
 <div class="jumbotron text-center" style="margin-bottom:0">
     <p>TechStore | Copyright 2020</p>
 </div>

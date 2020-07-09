@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "SortedServlet", urlPatterns = ServletURL.SORTED)
 public class SortedServlet extends HttpServlet {
@@ -33,8 +34,28 @@ public class SortedServlet extends HttpServlet {
             String price =  request.getParameter("price");
             String category = request.getParameter("category");
 
+            List<Product> products = productService.getProductsList();
 
-            List<Product> products = productService.sort(company, price, category);
+            if(!company.isEmpty()){
+                products = products.stream()
+                        .filter(x -> x.getNameCompany().equals(company))
+                        .collect(Collectors.toList());
+            }
+            if (!price.isEmpty()){
+                if (price.equals("larger")) {
+                    products.sort((first, second) ->
+                            first.getPrice() <= second.getPrice() ? 1 : -1);
+                }
+                if (price.equals("smaller")) {
+                    products.sort((first, second) ->
+                            first.getPrice() >= second.getPrice() ? 1 : -1);
+                }
+            }
+            if(!category.isEmpty()){
+                products = products.stream()
+                        .filter(x -> x.getCategory().getNameCategory().equals(category))
+                        .collect(Collectors.toList());
+            }
 
             request.setAttribute("productList", products);
 

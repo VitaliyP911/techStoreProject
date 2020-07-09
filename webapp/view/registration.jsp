@@ -16,26 +16,34 @@
 <%
 
     User user = (User) session.getAttribute("user");
-    if(user != null){
+    if (user != null) {
         response.sendRedirect(JspURL.HOME_PAGE);
     }
 
     String status = (String) request.getAttribute("status");
-
-    if(status == "Incorrect data"){
-        request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
-                "            <strong>Warning!</strong> Failed, account cannot be created!\n" +
-                "        </div>");
-    }
-    if(status == "Success"){
-        request.setAttribute("statusText", "<div class=\"alert alert-success\">\n" +
-                "            <strong>Success!</strong> Account created!\n" +
-                "        </div>");
+    if (status == null) {
+        request.setAttribute("statusWarning", "hidden");
+        request.setAttribute("statusSuccess", "hidden");
+    } else if (status == "warning") {
+        request.setAttribute("statusWarning", "visible");
+        request.setAttribute("statusSuccess", "hidden");
+    } else if (status == "success") {
+        request.setAttribute("statusWarning", "hidden");
+        request.setAttribute("statusSuccess", "visible");
     }
 %>
+<center>
+    <div class="alert alert-danger" style="width:25%; visibility:${statusWarning}">
+        <strong>Warning!</strong> Failed, account cannot be created!
+    </div>
+</center>
+<center>
+    <div class="alert alert-success" style="width:25%; visibility:${statusSuccess}">
+        <strong>Success!</strong> Account created!
+    </div>
+</center>
 <div class="container p-3 my-3 bg-light text-dark  border border-top-secondary" style="width:25%">
     <form action="${pageContext.request.contextPath}/registration" method="post">
-        <p>${statusText}</p>
         <h2>Registration</h2>
 
         <div class="input-group mb-3">
@@ -49,25 +57,26 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Surname</span>
             </div>
-            <input  type="surname" class="form-control" id="surname" name="surname">
+            <input type="surname" class="form-control" id="surname" name="surname">
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Email</span>
             </div>
-            <input  type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email">
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Password</span>
             </div>
-            <input  type="password" class="form-control" id="pwd" name="password">
+            <input type="password" class="form-control" id="pwd" name="password">
         </div>
         <input type="submit" value="Sing in" class="btn btn-dark"/>
         <div class="float-right">
-            <a type="button" class="btn btn-light"  href="${pageContext.request.contextPath}/view/login.jsp" >Go to login page</a>
+            <a type="button" class="btn btn-light" href="${pageContext.request.contextPath}/view/login.jsp">Go to login
+                page</a>
         </div>
     </form>
 </div>

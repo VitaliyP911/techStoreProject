@@ -2,6 +2,7 @@ package com.epam.service;
 
 import com.epam.entity.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -23,4 +24,6 @@ public interface UserService {
     boolean checkAdmin(String email);
 
     Optional<User> getDataUser(String email);
+
+    List<User> getUserList();
 }

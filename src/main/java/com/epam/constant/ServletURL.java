@@ -8,4 +8,8 @@ public interface ServletURL {
     String DELETE_ACCOUNT = "/deleteAccount";
     String CATALOG = "/catalog";
     String SORTED = "/sorted";
+    String PRODUCT_INFORMATION = "/productInformation";
+    String CHECK_ADMIN = "/checkAdmin";
+    String USERS = "/users";
+    String USER_INFORMATION = "/userInformation";
 }

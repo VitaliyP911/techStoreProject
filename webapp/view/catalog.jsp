@@ -43,7 +43,7 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/view/home.jsp">Head</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/view/profile.jsp">My profile</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/checkAdmin">My profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/catalog">Catalog</a>
@@ -61,7 +61,6 @@
     </div>
     </center>
     <br>
-    ${sort}
     <center>
         <div id="accordion" class="card bg-dark text-white" style="width:35%">
             <div class="card bg-dark text-white">
@@ -124,7 +123,7 @@
                 <td>${product.category}</td>
                 <td>${product.price}</td>
                 <td>
-                    <a href = "${pageContext.request.contextPath}/">See</a>
+                    <a href = "${pageContext.request.contextPath}/productInformation?id=${product.id}">See</a>
                 </td>
             </tr>
         </c:forEach>

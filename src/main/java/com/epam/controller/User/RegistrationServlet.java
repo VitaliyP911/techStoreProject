@@ -37,9 +37,10 @@ public class RegistrationServlet extends HttpServlet {
             String surname = request.getParameter("surname");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-        if(name !="" && surname !="" && email !="" && password !="") {
+
+        if(!name.isEmpty() && !surname.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             if (!userService.checkForSimilarityOfEmails(email) && userService.addNewUser(new User(name, surname, email, password))) {
-                request.setAttribute("status", "Success");
+                request.setAttribute("status", "success");
                 doGet(request, response);
             } else {
                 throw new IncorrectDataException("Incorrect data");
@@ -48,7 +49,7 @@ public class RegistrationServlet extends HttpServlet {
             throw new IncorrectDataException("Incorrect data");
         }
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect data");
+            request.setAttribute("status", "warning");
             doGet(request,response);
         }
 

@@ -3,10 +3,11 @@ package com.epam.service;
 import com.epam.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
 
     List<Product> getProductsList();
 
-    List<Product> sort(String company, String price, String category);
+    Optional<Product> getProduct(Long id);
 }

@@ -9,4 +9,7 @@ public interface JspURL {
     String PROFILE_SETTINGS_PAGE = "/view/profileSettings.jsp";
     String LOG_OUT_PAGE = "/view/logout.jsp";
     String CATALOG_PAGE = "/view/catalog.jsp";
+    String PRODUCT_INFORMATION_PAGE = "/view/productInformation.jsp";
+    String USERS_PAGE = "/view/admin/users.jsp";
+    String DATABASE_PAGE = "/view/admin/database.jsp";
 }

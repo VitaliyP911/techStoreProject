@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
                 throw new IncorrectDataException("Incorrect email or password");
             }
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect email or password");
+            request.setAttribute("status", "warning");
             doGet(request,response);
         }
     }

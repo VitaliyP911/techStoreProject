@@ -1,18 +1,20 @@
 <%@ page import="com.epam.constant.JspURL" %>
 <%@ page import="com.epam.entity.User" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Head</title>
+    <title>Catalog</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
         .fakeimg {
             height: 200px;
@@ -50,16 +52,51 @@
     </div>
 </nav>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>Welcome to the tech store!</h1>
-    <p>Here you can buy any technique for your taste.</p>
-</div>
 
 <div class="container p-3 my-3 bg-light text-dark" >
+    <center><div class="card bg-dark text-white text-center" style="width:50%">
+        <div class="card-body">
+            <h1 class="">Product information</h1>
+        </div>
+    </div>
+    </center>
+    <br>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active text-dark" data-toggle="tab" href="#home">About the product</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" data-toggle="tab" href="#menu1">Features</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" data-toggle="tab" href="#menu2">Reviews</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
+            <h3>${product.nameCompany} ${product.name}</h3>
+            <h4>Price: ${product.price}</h4>
+            ${error}
+
+            <button type="button" class="btn btn-outline-dark btn-lg">Buy</button>
+
+        </div>
+        <div id="menu1" class="container tab-pane fade"><br>
+            <h3>Menu 1</h3>
+
+        </div>
+        <div id="menu2" class="container tab-pane fade"><br>
+            <h3>Menu 2</h3>
+
+        </div>
+    </div>
 
 </div>
 
-<div class="jumbotron text-center float-bottom" style="margin-bottom:0">
+<div class="jumbotron text-center" style="margin-bottom:0">
     <p>TechStore | Copyright 2020</p>
 </div>
 

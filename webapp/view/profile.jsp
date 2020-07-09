@@ -1,4 +1,3 @@
-
 <%@ page import="com.epam.entity.User" %>
 <%@ page import="com.epam.constant.JspURL" %>
 <html>
@@ -17,9 +16,20 @@
 <%
 
     User user = (User) session.getAttribute("user");
-    if(user == null){
+    if (user == null) {
         response.sendRedirect(JspURL.LOGIN_PAGE);
     }
+
+    String status = (String) request.getAttribute("status");
+
+    if (status == "admin") {
+        request.setAttribute("statusText", "Admin");
+        request.setAttribute("databaseButton", "visible");
+    } else {
+        request.setAttribute("statusText", "User");
+        request.setAttribute("databaseButton", "hidden");
+    }
+
 
 %>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -53,9 +63,16 @@
     <br>
     <div class="card bg-light text-dark">
         <div class="card-body">
-
             <div class="container-fluid">
-
+                <div class="row align-items-center">
+                    <div class="col-4 bg-dark  text-white">
+                        <h4>Status: </h4>
+                    </div>
+                    <div class="col-8 bg-light text-dark\">
+                        <h4>${statusText}</h4>
+                    </div>
+                </div>
+                <br>
                 <div class="row align-items-center">
                     <div class="col-4 bg-dark  text-white">
                         <h4>Name</h4>
@@ -84,16 +101,26 @@
                 </div>
                 <br>
                 <center>
-                <div class="btn-group btn-group-lg" style="width:65%">
-                    <a type="button" class="btn btn-dark"  href="${pageContext.request.contextPath}/view/profileSettings.jsp">Profile settings</a>
-                    <a type="button" class="btn btn-light"  href="${pageContext.request.contextPath}/view/logout.jsp" >Log out</a>
-                </div>
+                    <div class="btn-group btn-group-lg" style="width:80%">
+                        <a type="button" class="btn btn-dark" href="${pageContext.request.contextPath}/profileSettings">Profile
+                            settings</a>
+                        <a type="button" class="btn btn-outline-dark"
+                           href="${pageContext.request.contextPath}/view/logout.jsp">Log out</a>
+                    </div>
                 </center>
+                <div style="visibility:${databaseButton}">
+                    <center>
+                        <br>
+                        <a type="button" style="width:45%" class="btn btn-dark btn-lg"
+                           href="${pageContext.request.contextPath}/view/database.jsp">Database</a>
+                    </center>
+                </div>
             </div>
 
         </div>
     </div>
 </div>
+<br>
 <div class="jumbotron text-center" style="margin-bottom:0">
     <p>TechStore | Copyright 2020</p>
 </div>
