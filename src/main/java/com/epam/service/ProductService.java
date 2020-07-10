@@ -10,4 +10,8 @@ public interface ProductService {
     List<Product> getProductsList();
 
     Optional<Product> getProduct(Long id);
+
+    boolean delete(Long id);
+
+    boolean update(Long id, Product product);
 }

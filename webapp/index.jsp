@@ -22,7 +22,7 @@
     <h1>Welcome to the tech store!</h1>
     <p>Here you can buy any technique for your taste.</p>
     <a type="button" class="btn btn-dark" href="${pageContext.request.contextPath}/view/login.jsp">Log in</a>
-    <a type="button" class="btn btn-outline-dark" href="${pageContext.request.contextPath}/view/registration.jsp">Sing in</a>
+    <a type="button" class="btn btn-outline-dark" href="${pageContext.request.contextPath}/view/registration.jsp">Sing up</a>
 </div>
 </body>
 </html>

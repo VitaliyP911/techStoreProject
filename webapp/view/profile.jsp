@@ -66,7 +66,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-4 bg-dark  text-white">
-                        <h4>Status: </h4>
+                        <h4>Status</h4>
                     </div>
                     <div class="col-8 bg-light text-dark\">
                         <h4>${statusText}</h4>

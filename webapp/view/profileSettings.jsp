@@ -86,14 +86,6 @@
                     </center>
                 </div>
             </form>
-            <%--<form action="${pageContext.request.contextPath}/deleteAccount" method="post">
-                <center>
-                    <div class="btn-group btn-group-lg" style="width:40%">
-                        <input type="submit" value="Delete" class="btn btn-outline-danger"/>
-                    </div>
-                </center>
-            </form>--%>
-
         </div>
     </div>
 </div>

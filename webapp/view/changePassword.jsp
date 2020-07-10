@@ -20,16 +20,30 @@
 <body>
 <%
     String status = (String) request.getAttribute("status");
-
-    if(status == "Incorrect email"){
-        request.setAttribute("statusText", "<div class=\"alert alert-danger\">\n" +
-                "            <strong>Warning!</strong> Incorrect email!\n" +
-                "        </div>");
+    if (status == null) {
+        request.setAttribute("statusWarning", "hidden");
+        request.setAttribute("statusSuccess", "hidden");
+    } else if (status == "warning") {
+        request.setAttribute("statusWarning", "visible");
+        request.setAttribute("statusSuccess", "hidden");
+    } else if (status == "success") {
+        request.setAttribute("statusWarning", "hidden");
+        request.setAttribute("statusSuccess", "visible");
     }
 %>
+
+<center>
+    <div class="alert alert-danger" style="width:25%; visibility:${statusWarning}">
+        <strong>Warning!</strong> Incorrect email!
+    </div>
+</center>
+<center>
+    <div class="alert alert-success" style="width:25%; visibility:${statusSuccess}">
+        <strong>Success!</strong> Password changed!
+    </div>
+</center>
 <div class="container p-3 my-3 bg-light text-dark  border border-top-secondary " style="width:25%">
     <form action="${pageContext.request.contextPath}/changePassword" method="post">
-        <p>${statusText}</p>
         <h2>Change password</h2>
         <div class="input-group mb-3">
             <div class="input-group-prepend">

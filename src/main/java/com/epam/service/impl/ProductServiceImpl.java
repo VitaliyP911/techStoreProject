@@ -1,19 +1,16 @@
 package com.epam.service.impl;
 
+import com.epam.dao.CrudDao;
 import com.epam.dao.CrudDaoImpl;
-import com.epam.dao.impl.AdminDaoImpl;
+import com.epam.dao.impl.HistoryDaoImpl;
 import com.epam.dao.impl.ProductDaoImpl;
-import com.epam.dao.impl.UserDaoImpl;
-import com.epam.entity.Admin;
-import com.epam.entity.Entity;
+import com.epam.entity.History;
 import com.epam.entity.Product;
 import com.epam.entity.User;
 import com.epam.service.ProductService;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 public class ProductServiceImpl implements ProductService {
 
@@ -29,25 +26,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> sort(String company, String price, String category) {
-        List<Product> list = productCrudDao.getAll();
+    public Optional<Product> getProduct(Long id) {
+        return productCrudDao.getById(id);
+    }
 
-        if(!company.isEmpty()){
-            list = list.stream().filter(x -> x.getNameCompany().equals(company)).collect(Collectors.toList());
-        }
-        if (!price.isEmpty()){
-            if (price.equals("larger")) {
-                list.sort((first, second) ->
-                        first.getPrice() <= second.getPrice() ? 1 : -1);
-            }
-            if (price.equals("smaller")) {
-                list.sort((first, second) ->
-                        first.getPrice() >= second.getPrice() ? 1 : -1);
-            }
-        }
-        if(!category.isEmpty()){
-            list = list.stream().filter(x -> x.getCategory().getNameCategory().equals(category)).collect(Collectors.toList());
-        }
-        return list;
+    @Override
+    public boolean delete(Long id) {
+        return productCrudDao.delete(id);
+    }
+
+    @Override
+    public boolean update(Long id , Product product) {
+        return productCrudDao.update(id, product);
     }
 }

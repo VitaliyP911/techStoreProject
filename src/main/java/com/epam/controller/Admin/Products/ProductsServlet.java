@@ -1,4 +1,4 @@
-package com.epam.controller.Admin;
+package com.epam.controller.Admin.Products;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
@@ -15,31 +15,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
+import java.util.List;
 
-@WebServlet(name = "UserInformationServlet", urlPatterns = ServletURL.USER_INFORMATION)
-public class UserInformationServlet extends HttpServlet {
-    private UserService userService;
+@WebServlet(name = "ProductsServlet", urlPatterns = ServletURL.PRODUCTS)
+public class ProductsServlet extends HttpServlet {
+    private ProductService productService;
 
     @Override
     public void init() throws ServletException {
-        userService = new UserServiceImpl();
+        productService = new ProductServiceImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String email = (String) request.getParameter("email");
+            List<Product> products = productService.getProductsList();
 
-            Optional<User> user = userService.getDataUser(email);
+            request.setAttribute("productList", products);
 
-            request.setAttribute("user", user.get());
-
-            request.getRequestDispatcher(JspURL.USERS_PAGE).forward(request, response);
+            request.getRequestDispatcher(JspURL.PRODUCTS_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("error", "Incorrect data");
-            request.getRequestDispatcher(JspURL.USERS_PAGE).forward(request,response);
+            request.setAttribute("status", "Incorrect data");
+            request.getRequestDispatcher(JspURL.PRODUCTS_PAGE).forward(request,response);
         }
     }
 

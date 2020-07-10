@@ -1,12 +1,11 @@
-package com.epam.controller.Admin;
+package com.epam.controller.Admin.Users;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
-import com.epam.entity.Product;
 import com.epam.entity.User;
-import com.epam.service.ProductService;
+import com.epam.exception.IncorrectDataException;
+import com.epam.exception.NotDeleteException;
 import com.epam.service.UserService;
-import com.epam.service.impl.ProductServiceImpl;
 import com.epam.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -17,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UsersServlet", urlPatterns = ServletURL.USERS)
-public class UsersServlet extends HttpServlet {
+@WebServlet(name = "DeleteUserServlet", urlPatterns = ServletURL.DELETE_USER)
+public class DeleteUserServlet extends HttpServlet {
     private UserService userService;
 
     @Override
@@ -28,22 +27,23 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            List<User> users = userService.getUserList();
-
-            request.setAttribute("userList", users);
-
-            request.getRequestDispatcher(JspURL.USERS_PAGE).forward(request, response);
-
-        }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect data");
-            request.getRequestDispatcher(JspURL.USERS_PAGE).forward(request,response);
-        }
+        request.getRequestDispatcher(ServletURL.USERS).forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        try {
+            Long id =  Long.parseLong(request.getParameter("id"));
+
+            if (userService.delete(id)) {
+                request.getRequestDispatcher(ServletURL.USERS).forward(request,response);
+            }else {
+                throw new NotDeleteException("Not delete user");
+            }
+        }catch (RuntimeException e){
+            request.setAttribute("status", "warning");
+            doGet(request,response);
+        }
 
     }
 }

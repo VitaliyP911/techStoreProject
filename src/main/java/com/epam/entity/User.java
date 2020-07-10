@@ -9,7 +9,7 @@ public class User extends Entity{
     private String surname;
     private String email;
     private String password;
-    private List<Basket> productList;
+    private List<Product> productList;
 
     public User(){
 
@@ -54,11 +54,11 @@ public class User extends Entity{
         this.password = password;
     }
 
-    public List<Basket> getProductList() {
+    public List<Product> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<Basket> productList) {
+    public void setProductList(List<Product> productList) {
         this.productList = productList;
     }
 

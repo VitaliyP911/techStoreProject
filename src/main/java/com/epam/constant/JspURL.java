@@ -12,4 +12,7 @@ public interface JspURL {
     String PRODUCT_INFORMATION_PAGE = "/view/productInformation.jsp";
     String USERS_PAGE = "/view/admin/users.jsp";
     String DATABASE_PAGE = "/view/admin/database.jsp";
+    String USER_EDITING_PAGE = "/view/admin/userEditing.jsp";
+    String PRODUCTS_PAGE = "/view/admin/products.jsp";
+    String PRODUCT_EDITING_PAGE = "/view/admin/productEditing.jsp";
 }

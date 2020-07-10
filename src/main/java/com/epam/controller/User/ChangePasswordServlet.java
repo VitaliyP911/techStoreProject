@@ -35,13 +35,13 @@ public class ChangePasswordServlet extends HttpServlet {
             String newPassword = request.getParameter("newPassword");
 
             if (userService.changePassword(newPassword, email)) {
-                request.setAttribute("status", "Password changed");
+                request.setAttribute("status", "success");
             }else {
                 throw new IncorrectDataException("Incorrect email");
             }
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect email");
+            request.setAttribute("status", "warning");
         }
         doGet(request,response);
     }

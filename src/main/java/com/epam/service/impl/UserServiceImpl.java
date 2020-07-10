@@ -11,6 +11,7 @@ import com.epam.entity.User;
 import com.epam.exception.NotSaveException;
 import com.epam.service.UserService;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -89,6 +90,12 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getDataUser(String email) {
         return userCrudDao.getByField(email);
     }
+
+    @Override
+    public List<User> getUserList() {
+        return userCrudDao.getAll();
+    }
+
 
     /*public static void main(String[] args) {
         UserService userService = new UserServiceImpl();

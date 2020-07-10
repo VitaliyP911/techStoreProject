@@ -11,5 +11,11 @@ public interface ServletURL {
     String PRODUCT_INFORMATION = "/productInformation";
     String CHECK_ADMIN = "/checkAdmin";
     String USERS = "/users";
-    String USER_INFORMATION = "/userInformation";
+    String DATA_USER = "/dataUser";
+    String DELETE_USER = "/deleteUser";
+    String USER_EDITING = "/userEditing";
+    String PRODUCTS = "/products";
+    String DELETE_PRODUCT = "/deleteProduct";
+    String DATA_PRODUCT = "/dataProduct";
+    String PRODUCT_EDITING = "/productEditing";
 }
