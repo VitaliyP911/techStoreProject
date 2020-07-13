@@ -2,6 +2,7 @@ package com.epam.controller.Products;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
+import com.epam.entity.Category;
 import com.epam.entity.Product;
 import com.epam.service.ProductService;
 import com.epam.service.impl.ProductServiceImpl;

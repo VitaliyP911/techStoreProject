@@ -9,6 +9,7 @@ public class Product extends Entity {
     private Integer price;
     private Category category;
     private Integer guarantee;
+    private Integer count;
 
     public Product() {
 
@@ -16,12 +17,21 @@ public class Product extends Entity {
 
     public Product(String name, String nameCompany,
                    Integer price, Category category,
-                   Integer guarantee) {
+                   Integer guarantee, Integer count) {
         this.name = name;
         this.nameCompany = nameCompany;
         this.price = price;
         this.category = category;
         this.guarantee = guarantee;
+        this.count = count;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public String getNameCompany() {
@@ -90,6 +100,7 @@ public class Product extends Entity {
                 ", price=" + price +
                 ", category=" + category +
                 ", guarantee=" + guarantee +
+                ", count=" + count +
                 '}';
     }
 }

@@ -99,6 +99,23 @@
                         <h4>${user.email}</h4>
                     </div>
                 </div>
+                <div style="visibility:${databaseButton}">
+                    <center>
+                        <br>
+                        <a type="button" style="width:45%" class="btn btn-dark btn-lg"
+                           href="${pageContext.request.contextPath}/view/admin/database.jsp">Database</a>
+                    </center>
+                </div>
+                <center>
+                    <br>
+                    <div class="btn-group btn-group-lg" style="width:80%">
+                        <a type="button" style="width:45%" class="btn btn-dark btn-lg"
+                           href="${pageContext.request.contextPath}/basket">Basket</a>
+                        <a type="button" class="btn btn-outline-dark"
+                           href="${pageContext.request.contextPath}/view/logout.jsp">History</a>
+                    </div>
+
+                </center>
                 <br>
                 <center>
                     <div class="btn-group btn-group-lg" style="width:80%">
@@ -108,13 +125,7 @@
                            href="${pageContext.request.contextPath}/view/logout.jsp">Log out</a>
                     </div>
                 </center>
-                <div style="visibility:${databaseButton}">
-                    <center>
-                        <br>
-                        <a type="button" style="width:45%" class="btn btn-dark btn-lg"
-                           href="${pageContext.request.contextPath}/view/database.jsp">Database</a>
-                    </center>
-                </div>
+
             </div>
 
         </div>

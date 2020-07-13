@@ -51,7 +51,7 @@
             </div>
             <input type="password" class="form-control" id="pwd" name="password">
         </div>
-        <input type="submit" value="Log in" class="btn btn-dark"/>
+        <input type="submit" value="Sing in" class="btn btn-dark"/>
         <div class="float-right">
             <a type="button" class="btn btn-light" href="${pageContext.request.contextPath}/view/changePassword.jsp">Forgot
                 your password?</a>

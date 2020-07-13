@@ -72,19 +72,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkForSimilarityOfEmails(String email) {
-        return userCrudDao.getAll().stream()
-                .map(User::getEmail)
-                .collect(Collectors.toList())
-                .contains(email);
+        return userCrudDao.getByField(email).isPresent();
     }
 
     @Override
     public boolean checkAdmin(String email) {
-        return  adminCrudDao.getAll().stream()
-                .map(Admin::getEmail)
-                .collect(Collectors.toList())
-                .contains(email);
+        return  adminCrudDao.getByField(email).isPresent();
     }
+
 
     @Override
     public Optional<User> getDataUser(String email) {

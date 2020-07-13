@@ -2,6 +2,7 @@ package com.epam.controller.Admin.Products;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
+import com.epam.entity.Category;
 import com.epam.entity.Product;
 import com.epam.entity.User;
 import com.epam.service.ProductService;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DataProductServlet", urlPatterns = ServletURL.PRODUCT_EDITING)
+@WebServlet(name = "DataProductServlet", urlPatterns = ServletURL.DATA_PRODUCT)
 public class DataProductServlet extends HttpServlet {
 
     private ProductService productService;

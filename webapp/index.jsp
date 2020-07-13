@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap 4 Website Example</title>
+    <title>TECHSTORE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
 <div class="jumbotron text-center border border-top-secondary " style="margin-top:10%">
     <h1>Welcome to the tech store!</h1>
     <p>Here you can buy any technique for your taste.</p>
-    <a type="button" class="btn btn-dark" href="${pageContext.request.contextPath}/view/login.jsp">Log in</a>
+    <a type="button" class="btn btn-dark" href="${pageContext.request.contextPath}/view/login.jsp">Sing in</a>
     <a type="button" class="btn btn-outline-dark" href="${pageContext.request.contextPath}/view/registration.jsp">Sing up</a>
 </div>
 </body>

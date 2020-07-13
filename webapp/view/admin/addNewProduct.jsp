@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>User editing system</title>
+    <title>Add product system</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -38,24 +38,23 @@
     } else {
         request.setAttribute("statusText", "hidden");
     }
-
     request.setAttribute("categoryList", Category.values());
 %>
 <center>
     <div class="alert alert-danger" style="width:25%; visibility:${statusText}">
-        <strong>Warning!</strong> Failed to edit product information!
+        <strong>Warning!</strong> Failed to add new product!
     </div>
 </center>
 <div class="container" style="width:35%">
     <div class="card bg-dark text-white text-center">
         <div class="card-body">
-            <h1 class="">Edit product information</h1>
+            <h1 class="">Add product</h1>
         </div>
     </div>
     <br>
     <div class="card bg-light text-dark">
         <div class="card-body">
-            <form action="${pageContext.request.contextPath}/productEditing?id=${product.id}" method="post">
+            <form action="${pageContext.request.contextPath}/addNewProduct" method="post">
                 <div class="container-fluid">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -89,7 +88,7 @@
                     <center>
                         <div class="card-body bg-light text-dark">
                             <select name="category" class="custom-select mb-3">
-                                <option value="" selected>${product.category}</option>
+                                <option value="">Category</option>
                                 <c:forEach items="${categoryList}" var="categories">
                                     <option>${categories}</option>
                                 </c:forEach>
@@ -98,7 +97,7 @@
                     </center>
                     <center>
                         <div class="btn-group btn-group-lg" style="width:45%">
-                            <input type="submit" value="Save" class="btn btn-dark"/>
+                            <input type="submit" value="Add new product" class="btn btn-dark"/>
                         </div>
                     </center>
                 </div>

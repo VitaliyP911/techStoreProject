@@ -18,4 +18,9 @@ public interface ServletURL {
     String DELETE_PRODUCT = "/deleteProduct";
     String DATA_PRODUCT = "/dataProduct";
     String PRODUCT_EDITING = "/productEditing";
+    String ADD_NEW_PRODUCT = "/addNewProduct";
+    String BASKET = "/basket";
+    String ADD_PRODUCT_TO_BASKET = "/addProductToBasket";
+    String DELETE_PRODUCT_WITH_BASKET = "/deleteProductWithBasket";
+    String PAY = "/pay";
 }

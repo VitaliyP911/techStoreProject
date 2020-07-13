@@ -39,4 +39,9 @@ public class ProductServiceImpl implements ProductService {
     public boolean update(Long id , Product product) {
         return productCrudDao.update(id, product);
     }
+
+    @Override
+    public boolean addNewProduct(Product product) {
+        return productCrudDao.save(product);
+    }
 }

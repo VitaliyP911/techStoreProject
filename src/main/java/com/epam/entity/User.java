@@ -1,7 +1,6 @@
 package com.epam.entity;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class User extends Entity{
 
@@ -9,7 +8,7 @@ public class User extends Entity{
     private String surname;
     private String email;
     private String password;
-    private List<Product> productList;
+    private Set<Product> productList = new LinkedHashSet<>();
 
     public User(){
 
@@ -54,12 +53,12 @@ public class User extends Entity{
         this.password = password;
     }
 
-    public List<Product> getProductList() {
+    public Set<Product> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProductToList(Product product) {
+        productList.add(product);
     }
 
     @Override

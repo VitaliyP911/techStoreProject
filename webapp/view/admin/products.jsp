@@ -41,8 +41,8 @@
 
         </div>
         <br>
-        <a type="button" style="width:45%" class="btn btn-dark btn-lg"
-           href="${pageContext.request.contextPath}/view/database.jsp">Add product</a>
+        <a type="button" style="width:30%" class="btn btn-dark btn-lg"
+           href="${pageContext.request.contextPath}/view/admin/addNewProduct.jsp">Add product</a>
     </center>
     <br>
     <table class="table table-striped table-bordered" id="datatable">
@@ -76,6 +76,10 @@
         </c:forEach>
         </tbody>
     </table>
+    <a type="button" class="btn btn-light btn-lg" hidden>Cancel</a>
+    <div class="float-right">
+        <a type="button" class="btn btn-light btn-lg" href="${pageContext.request.contextPath}/view/admin/database.jsp">Cancel</a>
+    </div>
 </div>
 
 

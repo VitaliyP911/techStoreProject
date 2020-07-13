@@ -68,6 +68,9 @@
         </c:forEach>
         </tbody>
     </table>
+    <div class="float-right">
+        <a type="button" class="btn btn-light btn-lg" href="${pageContext.request.contextPath}/view/admin/database.jsp">Cancel</a>
+    </div>
 </div>
 
 

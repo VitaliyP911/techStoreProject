@@ -1,6 +1,6 @@
 <%@ page import="com.epam.constant.JspURL" %>
 <%@ page import="com.epam.entity.User" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +26,11 @@
 <%
 
     User user = (User) session.getAttribute("user");
-    if(user == null){
+    if (user == null) {
         response.sendRedirect(JspURL.LOGIN_PAGE);
     }
+
+
 %>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a class="navbar-brand" href="#">MENU</a>
@@ -53,12 +55,13 @@
 </nav>
 
 
-<div class="container p-3 my-3 bg-light text-dark" >
-    <center><div class="card bg-dark text-white text-center" style="width:50%">
-        <div class="card-body">
-            <h1 class="">Product information</h1>
+<div class="container p-3 my-3 bg-light text-dark">
+    <center>
+        <div class="card bg-dark text-white text-center" style="width:50%">
+            <div class="card-body">
+                <h1 class="">Product information</h1>
+            </div>
         </div>
-    </div>
     </center>
     <br>
 
@@ -80,9 +83,26 @@
             <h3>${product.nameCompany} ${product.name}</h3>
             <h4>Price: ${product.price}</h4>
             ${error}
-
-            <button type="button" class="btn btn-outline-dark btn-lg">Buy</button>
-
+            <form action="${pageContext.request.contextPath}/addProductToBasket?id=${product.id}" method="post">
+                <select name="count" class="custom-select mb-3" style="width:15%">
+                    <option value="1" selected>Count</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-outline-dark btn-lg">Add to basket</button>
+                <div class="float-right">
+                    <a type="button" class="btn btn-light btn-lg" href="${pageContext.request.contextPath}/catalog">Cancel</a>
+                </div>
+            </form>
         </div>
         <div id="menu1" class="container tab-pane fade"><br>
             <h3>Menu 1</h3>
