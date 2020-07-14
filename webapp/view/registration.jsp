@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Registration system</title>
+    <title>TECHSTORE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -45,7 +45,6 @@
 <div class="container p-3 my-3 bg-light text-dark  border border-top-secondary" style="width:25%">
     <form action="${pageContext.request.contextPath}/registration" method="post">
         <h2>Registration</h2>
-
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Name</span>

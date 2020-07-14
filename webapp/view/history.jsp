@@ -1,5 +1,7 @@
 <%@ page import="com.epam.constant.JspURL" %>
 <%@ page import="com.epam.entity.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.epam.entity.History" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -30,6 +32,13 @@
         response.sendRedirect(JspURL.LOGIN_PAGE);
     }
 
+    List<History> historyList = (List<History>) request.getAttribute("historyList");
+
+    if (historyList.isEmpty()) {
+        request.setAttribute("clearButton", "hidden");
+    } else {
+        request.setAttribute("clearButton", "visible");
+    }
 
 %>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -55,59 +64,46 @@
 </nav>
 <br>
 <center>
-    <div class="card bg-dark text-white text-center" style="width:30%">
+    <div class="card bg-dark text-white text-center" style="width:20%">
         <div class="card-body">
-            <h2>Product information</h2>
+            <h1 class="">History</h1>
         </div>
     </div>
 </center>
-<div class="container p-3 my-3 bg-light text-dark  border border-top-secondary">
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active text-dark" data-toggle="tab" href="#home">About the product</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" data-toggle="tab" href="#menu1">Features</a>
-        </li>
-    </ul>
-
-    <div class="tab-content">
-        <div id="home" class="container tab-pane active"><br>
-            <h3>${product.nameCompany} ${product.name}</h3>
-            <h4>Price: ${product.price} UAH</h4>
-            ${error}
-            <form action="${pageContext.request.contextPath}/addProductToBasket?id=${product.id}" method="post">
-                <select name="count" class="custom-select mb-3" style="width:15%">
-                    <option value="1" selected>Count</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
-                <br>
-                <button type="submit" class="btn btn-outline-dark btn-lg">Add to basket</button>
-            </form>
-        </div>
-        <div id="menu1" class="container tab-pane fade"><br>
-            <h3>Guarantee: ${product.guarantee} year</h3>
-
-        </div>
-    </div>
+<div class="container p-3 my-3 bg-light text-dark border border-top-secondary">
+    <table class="table table-striped table-bordered" id="datatable">
+        <thead class="thead-dark">
+        <tr>
+            <th>Time</th>
+            <th>Name order</th>
+            <th>Company</th>
+            <th>Price (UAH)</th>
+            <th>Count</th>
+            <th>AmountDue</th>
+        </tr>
+        </thead>
+        <c:forEach items="${historyList}" var="history">
+            <tr>
+                <td>${history.time}</td>
+                <td>${history.nameProduct}</td>
+                <td>${history.nameCompany}</td>
+                <td>${history.price}</td>
+                <td>${history.count}</td>
+                <td>${history.amountDue}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 
 </div>
-<div class="container" style="margin-bottom:50px">
-    <a type="button" style="visibility:hidden" class="btn btn-dark btn-lg" href="${pageContext.request.contextPath}/"></a>
-    <a type="button" class="btn btn-light btn-lg float-right" href="${pageContext.request.contextPath}/catalog">Cancel</a>
+<div class="container p-3 my-3">
+    <a type="button" class="btn btn-dark btn-lg" style="visibility:${clearButton}"
+       href="${pageContext.request.contextPath}/clearHistory">Clear history</a>
+    <a type="button" class="btn btn-light btn-lg float-right" href="${pageContext.request.contextPath}/checkAdmin">Cancel</a>
 </div>
-<footer class="jumbotron text-center" style="margin-bottom:0">
+<div class="jumbotron text-center" style="margin-bottom:0">
     <p>TechStore | Copyright 2020</p>
-</footer>
+</div>
 
 </body>
 </html>

@@ -1,28 +1,33 @@
 package com.epam.entity;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class History extends Entity {
+
     private String nameProduct;
     private Integer price;
-    private Category category;
-    private Integer guarantee;
+    private String nameCompany;
+    private Integer count;
     private Long userID;
-    private Date date;
+    private Timestamp time;
+    private Integer amountDue;
 
     public History() {
 
     }
 
-    public History(String nameProduct, Integer price, Category category, Integer guarantee, Long userID, Date date) {
+    public History(String nameProduct, Integer price, String nameCompany, Integer count,
+                   Long userID, Timestamp time, Integer amountDue) {
         this.nameProduct = nameProduct;
         this.price = price;
-        this.category = category;
-        this.guarantee = guarantee;
+        this.nameCompany = nameCompany;
+        this.count = count;
         this.userID = userID;
-        this.date = date;
+        this.time = time;
+        this.amountDue = amountDue;
     }
 
     public String getNameProduct() {
@@ -41,20 +46,20 @@ public class History extends Entity {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getNameCompany() {
+        return nameCompany;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setNameCompany(String nameCompany) {
+        this.nameCompany = nameCompany;
     }
 
-    public Integer getGuarantee() {
-        return guarantee;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setGuarantee(Integer guarantee) {
-        this.guarantee = guarantee;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Long getUserID() {
@@ -65,12 +70,20 @@ public class History extends Entity {
         this.userID = userID;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getTime() {
+        return time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    public Integer getAmountDue() {
+        return amountDue;
+    }
+
+    public void setAmountDue(Integer amountDue) {
+        this.amountDue = amountDue;
     }
 
     @Override
@@ -81,15 +94,16 @@ public class History extends Entity {
         History history = (History) o;
         return Objects.equals(nameProduct, history.nameProduct) &&
                 Objects.equals(price, history.price) &&
-                category == history.category &&
-                Objects.equals(guarantee, history.guarantee) &&
+                Objects.equals(nameCompany, history.nameCompany) &&
+                Objects.equals(count, history.count) &&
                 Objects.equals(userID, history.userID) &&
-                Objects.equals(date, history.date);
+                Objects.equals(time, history.time) &&
+                Objects.equals(amountDue, history.amountDue);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), nameProduct, price, category, guarantee, userID, date);
+        return Objects.hash(super.hashCode(), nameProduct, price, nameCompany, count, userID, time, amountDue);
     }
 
     @Override
@@ -97,10 +111,11 @@ public class History extends Entity {
         return "History{" +
                 "nameProduct='" + nameProduct + '\'' +
                 ", price=" + price +
-                ", category=" + category +
-                ", guarantee=" + guarantee +
+                ", nameCompany='" + nameCompany + '\'' +
+                ", count=" + count +
                 ", userID=" + userID +
-                ", date=" + date +
+                ", time=" + time +
+                ", amountDue=" + amountDue +
                 '}';
     }
 }

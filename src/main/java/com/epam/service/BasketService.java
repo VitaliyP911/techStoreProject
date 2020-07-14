@@ -16,5 +16,7 @@ public interface BasketService {
 
     boolean deleteProductWithBasket(Product product, User user);
 
+    boolean clearBasket(User user);
+
     Integer countAmountDue(User user);
 }

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Catalog</title>
+    <title>TECHSTORE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -30,16 +30,14 @@
         response.sendRedirect(JspURL.LOGIN_PAGE);
     }
 %>
-
-
-<div class="container p-3 my-3 bg-light text-dark" >
-    <center><div class="card bg-dark text-white text-center" style="width:35%">
-        <div class="card-body">
-            <h1 class="">Database</h1>
-        </div>
+<br>
+<center><div class="card bg-dark text-white text-center" style="width:20%">
+    <div class="card-body">
+        <h2 class="">Database</h2>
     </div>
-    </center>
-    <br>
+</div>
+</center>
+<div class="container p-3 my-3 bg-light text-dark  border border-top-secondary" style="width:35%">
     <center>
         <a type="button" class="btn btn-dark btn-lg"  href="${pageContext.request.contextPath}/users">Users</a>
         <a type="button" class="btn btn-dark btn-lg"  href="${pageContext.request.contextPath}/products">Products</a>

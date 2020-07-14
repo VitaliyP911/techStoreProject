@@ -2,7 +2,7 @@
 <%@ page import="com.epam.constant.JspURL" %>
 <html>
 <head>
-    <title>My profile</title>
+    <title>TECHSTORE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -57,7 +57,7 @@
 <div class="container" style="width:35%">
     <div class="card bg-dark text-white text-center ">
         <div class="card-body">
-            <h1 class="">My profile</h1>
+            <h2>My profile</h2>
         </div>
     </div>
     <br>
@@ -112,7 +112,7 @@
                         <a type="button" style="width:45%" class="btn btn-dark btn-lg"
                            href="${pageContext.request.contextPath}/basket">Basket</a>
                         <a type="button" class="btn btn-outline-dark"
-                           href="${pageContext.request.contextPath}/view/logout.jsp">History</a>
+                           href="${pageContext.request.contextPath}/getHistory">History</a>
                     </div>
 
                 </center>

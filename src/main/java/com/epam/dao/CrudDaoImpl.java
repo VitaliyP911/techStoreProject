@@ -128,6 +128,38 @@ public abstract class CrudDaoImpl<TEntity> implements CrudDao<TEntity> {
         return flag;
     }
 
+    @Override
+    public List<TEntity> getListByField(String field) {
+        List<TEntity> entities = new ArrayList<>();
+
+        try(Connection connection = ConnectionDB.getConnection()){
+            PreparedStatement statement = connection.prepareStatement(sqlQuary.get("GET_BY_FIELD"));
+            statement.setObject(1, field);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                entities.add(getFields(resultSet));
+            }
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return entities;
+    }
+
+    @Override
+    public boolean deleteListByFiled(String field) {
+        boolean flag = false;
+        try(Connection connection = ConnectionDB.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sqlQuary.get("DELETE_BY_FIELD"));
+            statement.setString(1, field);
+            statement.executeUpdate();
+            flag = true;
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return flag;
+    }
+
     protected abstract TEntity getFields(ResultSet resultSet);
 
     protected abstract PreparedStatement setFields(PreparedStatement statement, TEntity entity);

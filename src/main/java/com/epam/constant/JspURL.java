@@ -16,6 +16,7 @@ public interface JspURL {
     String PRODUCTS_PAGE = "/view/admin/products.jsp";
     String PRODUCT_EDITING_PAGE = "/view/admin/productEditing.jsp";
     String ADD_NEW_PRODUCT_PAGE = "/view/admin/addNewProduct.jsp";
-    String BASKET_PAGE = "/view/basket/basket.jsp";
-    String PAY_PAGE = "/view/basket/pay.jsp";
+    String BASKET_PAGE = "/view/basket.jsp";
+    String PAY_PAGE = "/view/pay.jsp";
+    String HISTORY_PAGE = "/view/history.jsp";
 }

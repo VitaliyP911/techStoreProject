@@ -50,6 +50,12 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
+    public boolean clearBasket(User user) {
+        user.getProductList().clear();
+        return true;
+    }
+
+    @Override
     public Integer countAmountDue(User user) {
         return user.getProductList().stream().mapToInt( i -> i.getCount() * i.getPrice()).sum();
     }

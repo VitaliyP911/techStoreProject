@@ -1,12 +1,12 @@
 <%@ page import="com.epam.constant.JspURL" %>
 <%@ page import="com.epam.entity.User" %>
 <%@ page import="com.epam.entity.Category" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Catalog</title>
+    <title>TECHSTORE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -27,7 +27,7 @@
 <%
 
     User user = (User) session.getAttribute("user");
-    if(user == null){
+    if (user == null) {
         response.sendRedirect(JspURL.LOGIN_PAGE);
     }
 
@@ -55,19 +55,19 @@
     </div>
 </nav>
 
-
-<div class="container p-3 my-3 bg-light text-dark" >
-    <center><div class="card bg-dark text-white text-center" style="width:35%">
+<br>
+<center>
+    <div class="card bg-dark text-white text-center" style="width:20%">
         <div class="card-body">
-            <h1 class="">Catalog</h1>
+            <h2>Catalog</h2>
         </div>
     </div>
-    </center>
-    <br>
+</center>
+<div class="container p-3 my-3 bg-light text-dark  border border-top-secondary">
     <center>
         <div id="accordion" class="card bg-dark text-white" style="width:35%">
             <div class="card bg-dark text-white">
-                <div class="card-header" >
+                <div class="card-header">
                     <a class="card-link text-white" data-toggle="collapse" href="#collapseOne">
                         <center><h4>Sorting (click)</h4></center>
                     </a>
@@ -90,7 +90,7 @@
                             <select name="category" class="custom-select mb-3">
                                 <option value="">Category</option>
                                 <c:forEach items="${categoryList}" var="categories">
-                                <option>${categories}</option>
+                                    <option>${categories}</option>
                                 </c:forEach>
                             </select>
                             <button type="submit" class="btn btn-dark">Sort</button>
@@ -101,14 +101,14 @@
         </div>
     </center>
     <br>
-    <table class = "table table-striped table-bordered" id="datatable">
+    <table class="table table-striped table-bordered" id="datatable">
         <thead class="thead-dark">
         <tr>
             <th>Name</th>
             <th>Company</th>
             <th>Guarantee</th>
             <th>Category</th>
-            <th>Price</th>
+            <th>Price (UAH)</th>
             <th>Information</th>
         </tr>
         </thead>
@@ -120,7 +120,7 @@
                 <td>${product.category}</td>
                 <td>${product.price}</td>
                 <td>
-                    <a href = "${pageContext.request.contextPath}/productInformation?id=${product.id}">See</a>
+                    <a href="${pageContext.request.contextPath}/productInformation?id=${product.id}">See</a>
                 </td>
             </tr>
         </c:forEach>

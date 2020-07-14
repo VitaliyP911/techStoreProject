@@ -23,4 +23,7 @@ public interface ServletURL {
     String ADD_PRODUCT_TO_BASKET = "/addProductToBasket";
     String DELETE_PRODUCT_WITH_BASKET = "/deleteProductWithBasket";
     String PAY = "/pay";
+    String HISTORY = "/history";
+    String GET_HISTORY = "/getHistory";
+    String CLEAR_HISTORY = "/clearHistory";
 }
