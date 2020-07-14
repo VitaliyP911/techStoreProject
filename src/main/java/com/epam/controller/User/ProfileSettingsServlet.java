@@ -4,6 +4,7 @@ import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
 import com.epam.entity.User;
 import com.epam.exception.IncorrectDataException;
+import com.epam.exception.NotUpdateException;
 import com.epam.service.UserService;
 import com.epam.service.impl.UserServiceImpl;
 
@@ -15,9 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "ProfileSettingsServlet", urlPatterns = ServletURL.PROFILE_SETTINGS)
 public class ProfileSettingsServlet extends HttpServlet {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProfileSettingsServlet.class);
     private UserService userService;
 
     @Override
@@ -53,13 +57,14 @@ public class ProfileSettingsServlet extends HttpServlet {
             if (userService.update(user.getId(), user)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", userService.getDataUser(user.getEmail()).get());
+                LOGGER.info("updated user data");
                 request.getRequestDispatcher(JspURL.HOME_PAGE).forward(request, response);
             } else {
-                throw new IncorrectDataException("Incorrect email or password");
+                throw new NotUpdateException("Failed to update user account");
             }
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect email or password");
-            doGet(request,response);
+            LOGGER.error("RuntimeException" + e.getMessage());
+            request.getRequestDispatcher(JspURL.PROFILE_SETTINGS_PAGE).forward(request,response);
         }
     }
 }

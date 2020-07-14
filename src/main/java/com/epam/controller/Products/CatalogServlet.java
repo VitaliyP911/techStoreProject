@@ -2,6 +2,7 @@ package com.epam.controller.Products;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
+import com.epam.controller.History.HistoryServlet;
 import com.epam.dao.CrudDao;
 import com.epam.dao.impl.ProductDaoImpl;
 import com.epam.entity.Category;
@@ -17,9 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "CatalogServlet", urlPatterns = ServletURL.CATALOG)
 public class CatalogServlet extends HttpServlet {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CatalogServlet.class);
 
     private ProductService productService;
 
@@ -35,10 +39,12 @@ public class CatalogServlet extends HttpServlet {
 
             request.setAttribute("productList", products);
 
+            LOGGER.info("Read the catalog data");
+
             request.getRequestDispatcher(JspURL.CATALOG_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect data");
+            LOGGER.error("RuntimeException" + e.getMessage());
             request.getRequestDispatcher(JspURL.CATALOG_PAGE).forward(request,response);
         }
     }
@@ -46,6 +52,5 @@ public class CatalogServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
-
     }
 }

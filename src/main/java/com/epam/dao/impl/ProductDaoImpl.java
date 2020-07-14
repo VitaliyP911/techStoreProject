@@ -16,7 +16,6 @@ public class ProductDaoImpl  extends CrudDaoImpl<Product>{
     private static final String INSERT = "INSERT INTO products (name,name_company, price, guarantee, category)" +
             " VALUES (?, ?, ?, ?, ?);";
     private static final String UPDATE_BY_ID = "UPDATE products SET name = ?, name_company = ?, price = ?, guarantee = ?, category = ? WHERE ID = ?";
-    private static final String UPDATE_BY_FIELD = "UPDATE products SET price = ?, guarantee = ?, category = ? WHERE name = ?";
     private static final String DELETE_BY_ID = "DELETE FROM products WHERE ID = ?;";
 
     @Override

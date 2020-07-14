@@ -16,9 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "DeleteProductWithBasketServlet", urlPatterns = ServletURL.DELETE_PRODUCT_WITH_BASKET)
 public class DeleteProductWithBasketServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DeleteProductWithBasketServlet.class);
+
     private BasketService basketService;
 
     @Override
@@ -36,13 +41,13 @@ public class DeleteProductWithBasketServlet extends HttpServlet {
             Product product = basketService.getProduct(id).get();
 
             if(basketService.deleteProductWithBasket(product, user)) {
+                LOGGER.info("Removed the product from the basket");
                 request.getRequestDispatcher(ServletURL.BASKET).forward(request, response);
             }else {
                 throw new NotDeleteException("Not delete element with list");
             }
         }catch (RuntimeException e){
-            e.printStackTrace();
-            request.setAttribute("status", "warning");
+            LOGGER.info("RuntimeException" + e.getMessage());
             request.getRequestDispatcher(ServletURL.BASKET).forward(request, response);
         }
     }

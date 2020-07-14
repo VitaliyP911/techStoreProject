@@ -18,9 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "GetHistoryServlet", urlPatterns = ServletURL.GET_HISTORY)
 public class GetHistoryServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GetHistoryServlet.class);
+
     private HistoryService historyService;
 
     @Override
@@ -35,9 +40,12 @@ public class GetHistoryServlet extends HttpServlet {
 
             request.setAttribute("historyList", historyService.getHistory(user));
 
+            LOGGER.info("Read user history");
+
             request.getRequestDispatcher(JspURL.HISTORY_PAGE).forward(request,response);
         }catch (RuntimeException e){
-            request.setAttribute("status", "warning");
+            LOGGER.info("RuntimeException" + e.getMessage());
+            request.setAttribute("message", "warning");
             request.getRequestDispatcher(JspURL.PAY_PAGE).forward(request,response);
         }
     }

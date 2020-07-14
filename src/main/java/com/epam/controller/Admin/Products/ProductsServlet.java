@@ -16,9 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "ProductsServlet", urlPatterns = ServletURL.PRODUCTS)
 public class ProductsServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductsServlet.class);
+
+
     private ProductService productService;
 
     @Override
@@ -36,7 +42,7 @@ public class ProductsServlet extends HttpServlet {
             request.getRequestDispatcher(JspURL.PRODUCTS_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect data");
+            LOGGER.error("RuntimeException" + e.getMessage());
             request.getRequestDispatcher(JspURL.PRODUCTS_PAGE).forward(request,response);
         }
     }
@@ -44,6 +50,5 @@ public class ProductsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
-
     }
 }

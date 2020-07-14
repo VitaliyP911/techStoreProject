@@ -16,9 +16,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "ProductInformationServlet", urlPatterns = ServletURL.PRODUCT_INFORMATION)
 public class ProductInformationServlet extends HttpServlet {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductInformationServlet.class);
     private ProductService productService;
 
     @Override
@@ -35,10 +38,12 @@ public class ProductInformationServlet extends HttpServlet {
 
             request.setAttribute("product", product.get());
 
+            LOGGER.info("Read the product data");
+
             request.getRequestDispatcher(JspURL.PRODUCT_INFORMATION_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("error", "Incorrect data");
+            LOGGER.error("RuntimeException" + e.getMessage());
             request.getRequestDispatcher(JspURL.PRODUCT_INFORMATION_PAGE).forward(request,response);
         }
     }

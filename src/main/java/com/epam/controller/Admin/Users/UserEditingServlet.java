@@ -15,9 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "UserEditingServlet", urlPatterns = ServletURL.USER_EDITING)
 public class UserEditingServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserEditingServlet.class);
+
     private UserService userService;
 
     @Override
@@ -58,12 +63,14 @@ public class UserEditingServlet extends HttpServlet {
             if (userService.update(user.getId(), user)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
+                LOGGER.info("Updated user information");
                 request.getRequestDispatcher(ServletURL.USERS).forward(request, response);
             } else {
-                throw new NotUpdateException("Not update");
+                throw new NotUpdateException("Failed to update user data");
             }
         } catch (RuntimeException e) {
-            request.setAttribute("status", "warning");
+            LOGGER.info("RuntimeException" + e.getMessage());
+            request.setAttribute("message", "warning");
             request.getRequestDispatcher(ServletURL.USER_EDITING).forward(request, response);
         }
     }

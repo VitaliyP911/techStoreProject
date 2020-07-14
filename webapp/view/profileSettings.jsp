@@ -20,8 +20,6 @@
     if(user == null){
         response.sendRedirect(JspURL.LOGIN_PAGE);
     }
-
-
 %>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a class="navbar-brand" href="#">MENU</a>

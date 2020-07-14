@@ -17,9 +17,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "SortedServlet", urlPatterns = ServletURL.SORTED)
 public class SortedServlet extends HttpServlet {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SortedServlet.class);
 
     private ProductService productService;
 
@@ -60,10 +63,12 @@ public class SortedServlet extends HttpServlet {
 
             request.setAttribute("productList", products);
 
+            LOGGER.info("Sorted the directory" );
+
             request.getRequestDispatcher(JspURL.CATALOG_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect data");
+            LOGGER.error("RuntimeException" + e.getMessage());
             request.getRequestDispatcher(JspURL.CATALOG_PAGE).forward(request,response);
         }
     }

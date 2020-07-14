@@ -16,9 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "UsersServlet", urlPatterns = ServletURL.USERS)
 public class UsersServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UsersServlet.class);
+
     private UserService userService;
 
     @Override
@@ -36,7 +41,7 @@ public class UsersServlet extends HttpServlet {
             request.getRequestDispatcher(JspURL.USERS_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect data");
+            LOGGER.error("RuntimeException" + e.getMessage());
             request.getRequestDispatcher(JspURL.USERS_PAGE).forward(request,response);
         }
     }

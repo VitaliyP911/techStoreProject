@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "RegistrationServlet", urlPatterns = ServletURL.REGISTRATION)
 public class RegistrationServlet extends HttpServlet {
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationServlet.class);
 
     private UserService userService;
 
@@ -40,8 +43,9 @@ public class RegistrationServlet extends HttpServlet {
 
         if(!name.isEmpty() && !surname.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             if (!userService.checkForSimilarityOfEmails(email) && userService.addNewUser(new User(name, surname, email, password))) {
-                request.setAttribute("status", "success");
-                doGet(request, response);
+                LOGGER.info("Registered user");
+                request.setAttribute("message", "success");
+                request.getRequestDispatcher(JspURL.REGISTRATION_PAGE).forward(request,response);
             } else {
                 throw new IncorrectDataException("Incorrect data");
             }
@@ -49,8 +53,9 @@ public class RegistrationServlet extends HttpServlet {
             throw new IncorrectDataException("Incorrect data");
         }
         }catch (RuntimeException e){
-            request.setAttribute("status", "warning");
-            doGet(request,response);
+            LOGGER.error("RuntimeException" + e.getMessage());
+            request.setAttribute("message", "warning");
+            request.getRequestDispatcher(JspURL.REGISTRATION_PAGE).forward(request,response);
         }
 
     }

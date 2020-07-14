@@ -16,9 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "BasketServlet", urlPatterns = ServletURL.BASKET)
 public class BasketServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BasketServlet.class);
+
     private UserService userService;
 
     @Override
@@ -33,10 +38,13 @@ public class BasketServlet extends HttpServlet {
 
             request.setAttribute("basket", user.getProductList());
 
+            LOGGER.info("Subtracted data from the user's basket");
+
             request.getRequestDispatcher(JspURL.BASKET_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect email or password");
+            LOGGER.error("RuntimeException" + e.getMessage());
+            request.getRequestDispatcher(JspURL.BASKET_PAGE).forward(request, response);
         }
     }
 

@@ -15,9 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "ProductEditingServlet", urlPatterns = ServletURL.PRODUCT_EDITING)
 public class ProductEditingServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductEditingServlet.class);
+
     private ProductService productService;
 
     @Override
@@ -54,16 +59,18 @@ public class ProductEditingServlet extends HttpServlet {
                 product.setNameCompany(nameCompany);
             }
 
-
             if (productService.update(product.getId(), product)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("product", product);
+                LOGGER.info("Updated product information");
                 request.getRequestDispatcher(ServletURL.PRODUCTS).forward(request, response);
             } else {
-                throw new NotUpdateException("Not update");
+                throw new NotUpdateException("Failed to update product data");
             }
+
         } catch (RuntimeException e) {
-            request.setAttribute("status", "warning");
+            LOGGER.info("RuntimeException" + e.getMessage());
+            request.setAttribute("message", "warning");
             request.getRequestDispatcher(ServletURL.PRODUCT_EDITING).forward(request, response);
         }
     }

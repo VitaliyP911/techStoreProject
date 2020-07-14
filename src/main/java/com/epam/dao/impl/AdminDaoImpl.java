@@ -25,7 +25,6 @@ public class AdminDaoImpl extends CrudDaoImpl<Admin> {
         try {
             admin.setId(resultSet.getLong("ID"));
             admin.setEmail(resultSet.getString("email"));
-
         }catch (SQLException e){
             e.printStackTrace();
         }

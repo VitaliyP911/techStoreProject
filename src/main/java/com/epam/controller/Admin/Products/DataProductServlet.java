@@ -14,9 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "DataProductServlet", urlPatterns = ServletURL.DATA_PRODUCT)
 public class DataProductServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataProductServlet.class);
 
     private ProductService productService;
 
@@ -34,12 +38,13 @@ public class DataProductServlet extends HttpServlet {
 
             request.setAttribute("product", product);
 
-            request.setAttribute("status", "success");
+            request.setAttribute("message", "success");
 
             request.getRequestDispatcher(JspURL.PRODUCT_EDITING_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "warning");
+            LOGGER.error("RuntimeException" + e.getMessage());
+            request.setAttribute("message", "warning");
             request.getRequestDispatcher(JspURL.PRODUCTS_PAGE).forward(request,response);
         }
     }

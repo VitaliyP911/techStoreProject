@@ -2,6 +2,7 @@ package com.epam.controller.Admin.Users;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
+import com.epam.controller.Admin.Products.ProductsServlet;
 import com.epam.entity.Product;
 import com.epam.entity.User;
 import com.epam.service.ProductService;
@@ -16,9 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "DataUserServlet", urlPatterns = ServletURL.DATA_USER)
 public class DataUserServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataUserServlet.class);
+
     private UserService userService;
 
     @Override
@@ -35,12 +41,10 @@ public class DataUserServlet extends HttpServlet {
 
             request.setAttribute("user", user);
 
-            request.setAttribute("status", "success");
-
             request.getRequestDispatcher(JspURL.USER_EDITING_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "warning");
+            LOGGER.error("RuntimeException" + e.getMessage());
             request.getRequestDispatcher(JspURL.USERS_PAGE).forward(request,response);
         }
     }

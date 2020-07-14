@@ -14,9 +14,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "PayServlet", urlPatterns = ServletURL.PAY)
 public class PayServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PayServlet.class);
+
     private BasketService basketService;
 
     @Override
@@ -33,10 +38,14 @@ public class PayServlet extends HttpServlet {
 
             request.setAttribute("amountDue", basketService.countAmountDue(user));
 
+            LOGGER.info("Subtracted data for payment");
+
             request.getRequestDispatcher(JspURL.PAY_PAGE).forward(request, response);
 
         }catch (RuntimeException e){
-            request.setAttribute("status", "Incorrect email or password");
+            LOGGER.info("RuntimeException: Failed to subtract payment data");
+            request.setAttribute("message", "warning");
+            request.getRequestDispatcher(JspURL.PAY_PAGE).forward(request, response);
         }
     }
 

@@ -20,17 +20,17 @@
         response.sendRedirect(JspURL.HOME_PAGE);
     }
 
-    String status = (String) request.getAttribute("status");
+    String status = (String) request.getAttribute("message");
 
     if (status == "warning") {
-        request.setAttribute("statusText", "visible");
+        request.setAttribute("statusMessage", "visible");
     } else {
-        request.setAttribute("statusText", "hidden");
+        request.setAttribute("statusMessage", "hidden");
     }
 
 %>
 <center>
-    <div class="alert alert-danger" style="width:25%; visibility:${statusText}">
+    <div class="alert alert-danger" style="width:25%; visibility:${statusMessage}">
         <strong>Warning!</strong> Incorrect email or password!
     </div>
 </center>

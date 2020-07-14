@@ -26,9 +26,14 @@ import java.sql.Time;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "HistoryServlet", urlPatterns = ServletURL.HISTORY)
 public class HistoryServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(HistoryServlet.class);
+
     private HistoryService historyService;
     private BasketService basketService;
 
@@ -58,12 +63,14 @@ public class HistoryServlet extends HttpServlet {
 
             if (historyService.addPurchaseToHistory(historyList)) {
                 basketService.clearBasket(user);
+                LOGGER.info("They made a purchase and cleaned the basket" );
                 request.getRequestDispatcher(ServletURL.CHECK_ADMIN).forward(request, response);
             } else {
-                throw new NotSaveException("");
+                throw new NotSaveException("Failed to save history");
             }
         } catch (RuntimeException e) {
-            request.setAttribute("status", "warning");
+            LOGGER.info("RuntimeException" + e.getMessage());
+            request.setAttribute("message", "warning");
             request.getRequestDispatcher(ServletURL.PAY).forward(request, response);
         }
     }

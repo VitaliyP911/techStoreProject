@@ -8,9 +8,9 @@ import com.epam.service.BasketService;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class BasketServiceImpl implements BasketService {
+
     private CrudDaoImpl<Product> productCrudDao;
 
     public BasketServiceImpl() {
@@ -42,7 +42,6 @@ public class BasketServiceImpl implements BasketService {
             return true;
         }
     }
-
 
     @Override
     public boolean deleteProductWithBasket(Product product, User user) {

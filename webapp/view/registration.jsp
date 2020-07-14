@@ -20,7 +20,7 @@
         response.sendRedirect(JspURL.HOME_PAGE);
     }
 
-    String status = (String) request.getAttribute("status");
+    String status = (String) request.getAttribute("message");
     if (status == null) {
         request.setAttribute("statusWarning", "hidden");
         request.setAttribute("statusSuccess", "hidden");

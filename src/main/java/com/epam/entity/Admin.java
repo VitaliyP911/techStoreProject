@@ -26,15 +26,15 @@ public class Admin  extends Entity{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Admin)) return false;
         if (!super.equals(o)) return false;
         Admin admin = (Admin) o;
-        return Objects.equals(email, admin.email);
+        return Objects.equals(getEmail(), admin.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email);
+        return Objects.hash(super.hashCode(), getEmail());
     }
 
     @Override

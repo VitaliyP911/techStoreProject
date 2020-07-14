@@ -14,8 +14,6 @@ import com.epam.service.UserService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 
 public class UserServiceImpl implements UserService {
 
@@ -90,10 +88,4 @@ public class UserServiceImpl implements UserService {
     public List<User> getUserList() {
         return userCrudDao.getAll();
     }
-
-
-    /*public static void main(String[] args) {
-        UserService userService = new UserServiceImpl();
-        System.out.println(userService.checkAdmin("vitaliy.polishchuk11@gmail.co"));
-    }*/
 }

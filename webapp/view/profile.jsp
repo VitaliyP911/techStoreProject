@@ -30,6 +30,13 @@
         request.setAttribute("databaseButton", "hidden");
     }
 
+    String statusMessage = (String) request.getAttribute("message");
+
+    if (statusMessage == "warning") {
+        request.setAttribute("statusMessage", "visible");
+    } else {
+        request.setAttribute("statusMessage", "hidden");
+    }
 
 %>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -53,7 +60,11 @@
         </ul>
     </div>
 </nav>
-<br>
+<center>
+    <div class="alert alert-danger" style="width:25%; visibility:${statusMessage}">
+        <strong>Warning!</strong> Administrator verification does not work!
+    </div>
+</center>
 <div class="container" style="width:35%">
     <div class="card bg-dark text-white text-center ">
         <div class="card-body">

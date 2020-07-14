@@ -2,19 +2,16 @@ package com.epam.service.impl;
 
 import com.epam.dao.CrudDaoImpl;
 import com.epam.dao.impl.HistoryDaoImpl;
-import com.epam.dao.impl.ProductDaoImpl;
 import com.epam.entity.History;
-import com.epam.entity.Product;
 import com.epam.entity.User;
 import com.epam.service.HistoryService;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class HistoryServiceImpl implements HistoryService {
+
     private CrudDaoImpl<History> historyCrudDao;
 
     public HistoryServiceImpl() {

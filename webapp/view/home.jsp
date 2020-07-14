@@ -10,19 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <style>
-        .fakeimg {
-            height: 200px;
-            background: #aaa;
-        }
-    </style>
 </head>
 <body>
 <%
-
     User user = (User) session.getAttribute("user");
     if(user == null){
         response.sendRedirect(JspURL.LOGIN_PAGE);
@@ -56,7 +46,9 @@
 </div>
 
 <div class="container p-3 my-3 bg-light text-dark" >
-
+    <h2>Administrator TechStore : </h2>
+    <h4>Vitaliy Polishchuk</h4>
+    <a href="https://github.com/VitaliyP911" class="btn btn-dark">View GitHub's profile</a>
 </div>
 
 <div class="jumbotron text-center float-bottom" style="margin-bottom:0">

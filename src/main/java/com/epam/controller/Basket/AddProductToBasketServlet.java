@@ -2,6 +2,7 @@ package com.epam.controller.Basket;
 
 import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
+import com.epam.controller.Admin.CheckAdminServlet;
 import com.epam.entity.Product;
 import com.epam.entity.User;
 import com.epam.exception.NotAddElementToListException;
@@ -18,9 +19,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "AddProductToBasketServlet", urlPatterns = ServletURL.ADD_PRODUCT_TO_BASKET)
 public class AddProductToBasketServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddProductToBasketServlet.class);
+
     private BasketService basketService;
 
     @Override
@@ -30,26 +36,27 @@ public class AddProductToBasketServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession().getAttribute("user");
-
         Long id = Long.parseLong(request.getParameter("id"));
 
-        Integer count =  Integer.parseInt(request.getParameter("count"));
-
         try {
+
+            User user = (User) request.getSession().getAttribute("user");
+
+            Integer count =  Integer.parseInt(request.getParameter("count"));
+
             Product product = basketService.getProduct(id).get();
 
             product.setCount(count);
 
             if(basketService.addNewProductToBasket(product, user)){
+                LOGGER.info("Added product to basket");
                 request.getRequestDispatcher(ServletURL.PRODUCT_INFORMATION + "?id=" + id).forward(request, response);
             }else{
                 throw new NotAddElementToListException("Not add element to list");
             }
 
         }catch (RuntimeException e){
-            e.printStackTrace();
-            request.setAttribute("status", "warning");
+            LOGGER.error("RuntimeException" + e.getMessage());
             request.getRequestDispatcher(ServletURL.PRODUCT_INFORMATION + "?id=" + id).forward(request, response);
         }
     }

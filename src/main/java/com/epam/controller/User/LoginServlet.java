@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @WebServlet(name = "LoginServlet", urlPatterns = ServletURL.LOGIN)
 public class LoginServlet extends HttpServlet {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginServlet.class);
     private UserService userService;
 
     @Override
@@ -40,13 +41,15 @@ public class LoginServlet extends HttpServlet {
             if (userService.login(email, password)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", userService.getDataUser(email).get());
+                LOGGER.info("Login user");
                 request.getRequestDispatcher(JspURL.HOME_PAGE).forward(request, response);
             } else {
                 throw new IncorrectDataException("Incorrect email or password");
             }
         }catch (RuntimeException e){
-            request.setAttribute("status", "warning");
-            doGet(request,response);
+            LOGGER.error("RuntimeException" + e.getMessage());
+            request.setAttribute("message", "warning");
+            request.getRequestDispatcher(JspURL.LOGIN_PAGE).forward(request,response);
         }
     }
 }

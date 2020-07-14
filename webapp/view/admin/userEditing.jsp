@@ -15,12 +15,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <style>
-        .fakeimg {
-            height: 200px;
-            background: #aaa;
-        }
-    </style>
 </head>
 <body>
     <%
@@ -30,16 +24,16 @@
         response.sendRedirect(JspURL.LOGIN_PAGE);
     }
 
-    String status = (String) request.getAttribute("status");
+    String status = (String) request.getAttribute("message");
 
     if (status == "warning") {
-        request.setAttribute("statusText", "visible");
+        request.setAttribute("statusMessage", "visible");
     } else {
-        request.setAttribute("statusText", "hidden");
+        request.setAttribute("statusMessage", "hidden");
     }
 %>
 <center>
-    <div class="alert alert-danger" style="width:25%; visibility:${statusText}">
+    <div class="alert alert-danger" style="width:25%; visibility:${statusMessage}">
         <strong>Warning!</strong> Failed to edit user information!
     </div>
 </center>
