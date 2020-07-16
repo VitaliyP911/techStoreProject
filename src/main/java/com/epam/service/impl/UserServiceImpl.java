@@ -44,11 +44,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean save(User user) throws NotSaveException {
-        return userCrudDao.save(user);
-    }
-
-    @Override
     public boolean update(Long id ,User user) {
         return userCrudDao.update(id, user);
     }

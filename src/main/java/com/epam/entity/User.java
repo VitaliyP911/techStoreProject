@@ -37,6 +37,23 @@ public class User extends Entity{
         this.password = password;
     }
 
+    public User(Long id, String name, String surname, String email, String password) {
+        super(id);
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(Long id, String name, String surname, String email, String password, Set<Product> productList) {
+        super(id);
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.productList = productList;
+    }
+
     public String getName() {
         return name;
     }

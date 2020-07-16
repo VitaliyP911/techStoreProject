@@ -57,6 +57,5 @@ public class RegistrationServlet extends HttpServlet {
             request.setAttribute("message", "warning");
             request.getRequestDispatcher(JspURL.REGISTRATION_PAGE).forward(request,response);
         }
-
     }
 }

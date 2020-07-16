@@ -15,6 +15,13 @@ public class Product extends Entity {
 
     }
 
+    public Product(Long id, String name, String nameCompany, Integer price) {
+        super(id);
+        this.name = name;
+        this.nameCompany = nameCompany;
+        this.price = price;
+    }
+
     public Product(String name, String nameCompany,
                    Integer price, Category category,
                    Integer guarantee, Integer count) {

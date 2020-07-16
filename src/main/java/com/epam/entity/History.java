@@ -19,6 +19,15 @@ public class History extends Entity {
 
     }
 
+    public History(Long id, String nameProduct, Integer price, String nameCompany, Long userID, Timestamp time) {
+        super(id);
+        this.nameProduct = nameProduct;
+        this.price = price;
+        this.nameCompany = nameCompany;
+        this.userID = userID;
+        this.time = time;
+    }
+
     public History(String nameProduct, Integer price, String nameCompany, Integer count,
                    Long userID, Timestamp time, Integer amountDue) {
         this.nameProduct = nameProduct;
