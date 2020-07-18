@@ -29,17 +29,20 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public boolean addNewProductToBasket(Product product, User user) {
+        try {
+            Set<Product> products = user.getProductList();
 
-        Set<Product> products = user.getProductList();
-
-        if (user.getProductList().contains(product)) {
-            user.getProductList().stream()
-                    .filter(i -> i.equals(product))
-                    .forEach(i -> i.setCount(i.getCount() + product.getCount()));
-            return true;
-        } else {
-            user.setProductToList(product);
-            return true;
+            if (user.getProductList().contains(product)) {
+                user.getProductList().stream()
+                        .filter(i -> i.equals(product))
+                        .forEach(i -> i.setCount(i.getCount() + product.getCount()));
+                return true;
+            } else {
+                user.setProductToList(product);
+                return true;
+            }
+        } catch (RuntimeException e) {
+            return false;
         }
     }
 
@@ -50,12 +53,16 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public boolean clearBasket(User user) {
-        user.getProductList().clear();
-        return true;
+        try {
+            user.getProductList().clear();
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
     @Override
     public Integer countAmountDue(User user) {
-        return user.getProductList().stream().mapToInt( i -> i.getCount() * i.getPrice()).sum();
+        return user.getProductList().stream().mapToInt(i -> i.getCount() * i.getPrice()).sum();
     }
 }

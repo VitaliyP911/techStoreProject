@@ -17,7 +17,13 @@ public class AdminDaoImpl extends CrudDaoImpl<Admin> {
     private static final String INSERT = "INSERT INTO admin (email)" +
             " VALUES (?);";
     private static final String DELETE_BY_ID = "DELETE FROM admin WHERE ID = ?;";
-
+    /**
+     * Method gets field values ​​and put
+     * them in object.
+     *
+     * @param resultSet
+     * @return TEntity object
+     */
     @Override
     protected Admin getFields(ResultSet resultSet) {
         Admin admin = new Admin();
@@ -31,7 +37,14 @@ public class AdminDaoImpl extends CrudDaoImpl<Admin> {
 
         return admin;
     }
-
+    /**
+     * Method gets field values from the object and put
+     * them in sql request.
+     *
+     * @param statement
+     * @param entity
+     * @return PreparedStatement object
+     */
     @Override
     protected PreparedStatement setFields(PreparedStatement statement, Admin entity) {
         try {
@@ -41,7 +54,9 @@ public class AdminDaoImpl extends CrudDaoImpl<Admin> {
         }
         return statement;
     }
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     protected void init() {
         sqlQuary.put("GET_BY_ID", GET_BY_ID);

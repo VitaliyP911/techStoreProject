@@ -10,53 +10,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-
 import java.util.LinkedHashSet;
 import java.util.Set;
-import com.epam.dao.impl.AdminDaoImpl;
-import com.epam.dao.impl.HistoryDaoImpl;
-import com.epam.dao.impl.ProductDaoImpl;
-import com.epam.dao.impl.UserDaoImpl;
-import com.epam.entity.Admin;
-import com.epam.entity.History;
-import com.epam.entity.Product;
-import com.epam.entity.User;
-import com.epam.service.HistoryService;
-import com.epam.service.ProductService;
-import com.epam.service.UserService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+
+
 import org.mockito.Mockito;
-import org.mockito.exceptions.base.MockitoException;
-
-
-import java.util.*;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
-import static org.mockito.MockitoAnnotations.initMocks;
 
 
 public class BasketServiceImplTest {
@@ -66,15 +36,18 @@ public class BasketServiceImplTest {
     @InjectMocks
     private BasketService basketService= new BasketServiceImpl();
 
-    Set<Product> testProductSet;
+    Set<Product> testProductSet = new LinkedHashSet<>();
 
-    Product testProduct = new Product(1L,"name", "nameCompany", 1000);
+    Product testProduct = new Product(1L,"name", "nameCompany", 1000,2);
 
-    User testUser = new User(1L,"name", "surname", "email", "password", testProductSet;
+    User testUser = new User(1L,"name", "surname", "email", "password", testProductSet);
+
+    User testUserMock = Mockito.mock(User.class);
 
     @BeforeEach
     public void init() {
         initMocks(this);
+        testProductSet.add(testProduct);
     }
 
     @Test
@@ -96,11 +69,40 @@ public class BasketServiceImplTest {
 
     @Test
     public void addNewProductToBasketTest() {
-        assertTrue(basketService.addNewProductToBasket(testProduct, testUser));
+        when(testUserMock.getProductList()).thenReturn(testProductSet);
+        assertTrue(basketService.addNewProductToBasket(testProduct, testUserMock));
     }
 
-    /*@Test
+    @Test
+    public void addNewProductToBasketExceptionTest() {
+        when(testUserMock.getProductList()).thenThrow(RuntimeException.class);
+        assertFalse(basketService.addNewProductToBasket(testProduct, testUserMock));
+    }
+
+    @Test
     public void deleteProductWithBasketTest() {
-        assertTrue(basketService.deleteProductWithBasket(testProduct,testUser));
-    }*/
+
+        when(testUserMock.getProductList()).thenReturn(testProductSet);
+        assertTrue(basketService.deleteProductWithBasket(testProduct,testUserMock));
+    }
+
+    @Test
+    public void deleteProductWithBasketExceptionTest() {
+        Set<Product> emptyProductSet = new LinkedHashSet<>();
+
+        when(testUserMock.getProductList()).thenReturn(emptyProductSet);
+        assertFalse(basketService.deleteProductWithBasket(testProduct,testUserMock));
+    }
+
+    @Test
+    public void clearBasketTest() {
+        when(testUserMock.getProductList()).thenReturn(testProductSet);
+        assertTrue(basketService.clearBasket(testUserMock));
+    }
+
+    @Test
+    public void clearBasketExceptionTest() {
+        when(testUserMock.getProductList()).thenThrow(RuntimeException.class);
+        assertFalse(basketService.clearBasket(testUserMock));
+    }
 }

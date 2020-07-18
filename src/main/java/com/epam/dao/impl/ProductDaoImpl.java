@@ -17,7 +17,13 @@ public class ProductDaoImpl  extends CrudDaoImpl<Product>{
             " VALUES (?, ?, ?, ?, ?);";
     private static final String UPDATE_BY_ID = "UPDATE products SET name = ?, name_company = ?, price = ?, guarantee = ?, category = ? WHERE ID = ?";
     private static final String DELETE_BY_ID = "DELETE FROM products WHERE ID = ?;";
-
+    /**
+     * Method gets field values ​​and put
+     * them in object.
+     *
+     * @param resultSet
+     * @return TEntity object
+     */
     @Override
     public Product getFields(ResultSet resultSet) {
 
@@ -36,7 +42,14 @@ public class ProductDaoImpl  extends CrudDaoImpl<Product>{
 
         return product;
     }
-
+    /**
+     * Method gets field values from the object and put
+     * them in sql request.
+     *
+     * @param statement
+     * @param entity
+     * @return PreparedStatement object
+     */
     @Override
     protected PreparedStatement setFields(PreparedStatement statement, Product entity) {
 
@@ -52,7 +65,9 @@ public class ProductDaoImpl  extends CrudDaoImpl<Product>{
 
         return statement;
     }
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     protected void init() {
         sqlQuary.put("GET_BY_ID", GET_BY_ID);

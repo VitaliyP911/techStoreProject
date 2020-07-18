@@ -1,33 +1,16 @@
 package com.epam.service.impl;
-import com.epam.dao.impl.AdminDaoImpl;
 import com.epam.dao.impl.HistoryDaoImpl;
-import com.epam.dao.impl.ProductDaoImpl;
-import com.epam.dao.impl.UserDaoImpl;
-import com.epam.entity.Admin;
 import com.epam.entity.History;
-import com.epam.entity.Product;
 import com.epam.entity.User;
 import com.epam.service.HistoryService;
-import com.epam.service.ProductService;
-import com.epam.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.exceptions.base.MockitoException;
 
 
 import java.util.*;
@@ -68,7 +51,7 @@ public class HistoryServiceImplTest {
     @Test
     public void addPurchaseToHistoryExceptionTest() {
         when(historyCrudDao.save(any())).thenThrow(RuntimeException.class);
-        assertThrows(RuntimeException.class, () -> historyService.addPurchaseToHistory(testHistoryList));
+        assertFalse(historyService.addPurchaseToHistory(testHistoryList));
     }
 
     @Test

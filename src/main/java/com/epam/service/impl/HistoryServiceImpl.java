@@ -20,8 +20,12 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Override
     public boolean addPurchaseToHistory(List<History> historyList) {
-        historyList.stream().forEach(i -> historyCrudDao.save(i));
-        return true;
+        try{
+            historyList.stream().forEach(i -> historyCrudDao.save(i));
+            return true;
+        }catch (RuntimeException e){
+            return false;
+        }
     }
 
     @Override

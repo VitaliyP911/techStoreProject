@@ -1,19 +1,14 @@
 package com.epam.service.impl;
 
-import com.epam.dao.CrudDao;
 import com.epam.dao.impl.AdminDaoImpl;
 import com.epam.dao.impl.UserDaoImpl;
 import com.epam.entity.Admin;
 import com.epam.entity.User;
 import com.epam.service.UserService;
-import javassist.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.exceptions.base.MockitoException;
 
 
 import java.util.*;

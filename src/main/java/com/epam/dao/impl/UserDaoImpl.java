@@ -18,7 +18,13 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
     private static final String UPDATE_BY_FIELD = "UPDATE users SET name = ?, surname =?, password = ? WHERE email = ?";
     private static final String DELETE_BY_ID = "DELETE FROM users WHERE ID = ?;";
     private static final String DELETE_BY_FIELD = "DELETE FROM users WHERE email = ?;";
-
+    /**
+     * Method gets field values ​​and put
+     * them in object.
+     *
+     * @param resultSet
+     * @return TEntity object
+     */
     protected User getFields(ResultSet resultSet) {
         User user = new User();
         try {
@@ -32,7 +38,14 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
         }
         return user;
     }
-
+    /**
+     * Method gets field values from the object and put
+     * them in sql request.
+     *
+     * @param statement
+     * @param entity
+     * @return PreparedStatement object
+     */
     @Override
     protected PreparedStatement setFields(PreparedStatement statement, User entity) {
         try {
@@ -45,7 +58,9 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
         }
         return statement;
     }
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     protected void init() {
         sqlQuary.put("GET_BY_ID", GET_BY_ID);

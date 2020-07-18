@@ -17,7 +17,13 @@ public class HistoryDaoImpl extends CrudDaoImpl<History> {
             " VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String DELETE_BY_ID = "DELETE FROM history WHERE ID = ?;";
     private static final String DELETE_BY_FIELD = "DELETE FROM history WHERE userID = ?;";
-
+    /**
+     * Method gets field values ​​and put
+     * them in object.
+     *
+     * @param resultSet
+     * @return TEntity object
+     */
     @Override
     protected History getFields(ResultSet resultSet) {
 
@@ -37,7 +43,14 @@ public class HistoryDaoImpl extends CrudDaoImpl<History> {
         }
         return history;
     }
-
+    /**
+     * Method gets field values from the object and put
+     * them in sql request.
+     *
+     * @param statement
+     * @param entity
+     * @return PreparedStatement object
+     */
     @Override
     protected PreparedStatement setFields(PreparedStatement statement, History entity) {
         try {
@@ -54,7 +67,9 @@ public class HistoryDaoImpl extends CrudDaoImpl<History> {
 
         return statement;
     }
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     protected void init() {
         sqlQuary.put("GET_BY_ID", GET_BY_ID);
