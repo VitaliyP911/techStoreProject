@@ -16,19 +16,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /pay url.
+ */
 @WebServlet(name = "PayServlet", urlPatterns = ServletURL.PAY)
 public class PayServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PayServlet.class);
 
     private BasketService basketService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         basketService = new BasketServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /pay url
+     * sets page attributes and returns pay.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -48,7 +60,14 @@ public class PayServlet extends HttpServlet {
             request.getRequestDispatcher(JspURL.PAY_PAGE).forward(request, response);
         }
     }
-
+    /**
+     * Method processes POST request for /pay url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

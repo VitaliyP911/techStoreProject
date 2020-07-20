@@ -28,7 +28,9 @@ import java.util.List;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /history url.
+ */
 @WebServlet(name = "HistoryServlet", urlPatterns = ServletURL.HISTORY)
 public class HistoryServlet extends HttpServlet {
 
@@ -36,13 +38,25 @@ public class HistoryServlet extends HttpServlet {
 
     private HistoryService historyService;
     private BasketService basketService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         historyService = new HistoryServiceImpl();
         basketService = new BasketServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /history url
+     * takes user data from the session, adds
+     * the purchase to the story, clears the cart
+     * and redirect to the getHistory servlet.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -74,7 +88,14 @@ public class HistoryServlet extends HttpServlet {
             request.getRequestDispatcher(ServletURL.PAY).forward(request, response);
         }
     }
-
+    /**
+     * Method processes POST request for /history url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

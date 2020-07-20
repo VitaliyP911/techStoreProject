@@ -18,22 +18,43 @@ import java.io.IOException;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /profileSettings url.
+ */
 @WebServlet(name = "ProfileSettingsServlet", urlPatterns = ServletURL.PROFILE_SETTINGS)
 public class ProfileSettingsServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProfileSettingsServlet.class);
     private UserService userService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /profileSettings url
+     * redirects on profileSettings.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher(JspURL.PROFILE_SETTINGS_PAGE).forward(request,response);
     }
-
+    /**
+     * Method processes POST request for /profileSettings url
+     * takes parameters from the page, changes user information and
+     * returns home.jsp
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

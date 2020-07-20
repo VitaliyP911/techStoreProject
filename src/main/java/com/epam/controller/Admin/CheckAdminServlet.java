@@ -15,19 +15,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /checkAdmin url.
+ */
 @WebServlet(name = "CheckAdminServlet", urlPatterns = ServletURL.CHECK_ADMIN)
 public class CheckAdminServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckAdminServlet.class);
 
     private UserService userService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /checkAdmin url
+     * takes user data from the session, checks if he is an administrator and returns profile.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

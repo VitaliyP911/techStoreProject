@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /clearHistory url.
+ */
 @WebServlet(name = "ClearHistoryServlet", urlPatterns = ServletURL.CLEAR_HISTORY)
 public class ClearHistoryServlet extends HttpServlet {
 
@@ -24,12 +26,23 @@ public class ClearHistoryServlet extends HttpServlet {
 
 
     private HistoryService historyService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         historyService = new HistoryServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /clearHistory url
+     * takes user data from the session, clear your story
+     * and redirects on getHistory servlet.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -46,7 +59,14 @@ public class ClearHistoryServlet extends HttpServlet {
             request.getRequestDispatcher(ServletURL.CHECK_ADMIN).forward(request,response);
         }
     }
-
+    /**
+     * Method processes POST request for /clearHistory url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

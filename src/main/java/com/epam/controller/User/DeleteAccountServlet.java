@@ -17,23 +17,44 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /deleteAccount url.
+ */
 @WebServlet(name = "DeleteAccountServlet", urlPatterns = ServletURL.DELETE_ACCOUNT)
 public class DeleteAccountServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(DeleteAccountServlet.class);
 
     private UserService userService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /deleteAccount url
+     * redirects on profile.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(JspURL.LOG_OUT_PAGE).forward(request,response);
+        request.getRequestDispatcher(JspURL.PROFILE_PAGE).forward(request,response);
     }
-
+    /**
+     * Method processes POST request for /deleteAccount url
+     * takes user data from the session, deletes the user
+     * and returns logOut.jsp
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

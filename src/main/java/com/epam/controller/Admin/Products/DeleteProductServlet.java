@@ -13,24 +13,45 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /deleteProduct url.
+ */
 @WebServlet(name = "DeleteProductServlet", urlPatterns = ServletURL.DELETE_PRODUCT)
 public class DeleteProductServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DeleteProductServlet.class);
 
     private ProductService productService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         productService = new ProductServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /deleteProduct url
+     * redirects on products servlet.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher(ServletURL.PRODUCTS).forward(request,response);
     }
-
+    /**
+     * Method processes POST request for /deleteProduct url
+     * takes the id parameter and deletes the product with that id
+     * and redirect to the products servlet
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -46,7 +67,7 @@ public class DeleteProductServlet extends HttpServlet {
         }catch (RuntimeException e){
             LOGGER.error("RuntimeException" + e.getMessage());
             request.setAttribute("message", "warning");
-            doGet(request,response);
+            request.getRequestDispatcher(ServletURL.PRODUCTS).forward(request,response);
         }
 
     }

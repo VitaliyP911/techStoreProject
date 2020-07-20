@@ -21,19 +21,32 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /addProductToBasket url.
+ */
 @WebServlet(name = "AddProductToBasketServlet", urlPatterns = ServletURL.ADD_PRODUCT_TO_BASKET)
 public class AddProductToBasketServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AddProductToBasketServlet.class);
 
     private BasketService basketService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         basketService = new BasketServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /addProductToBasket url
+     * takes user data from the session, adds a new product to his basket
+     * and returns productInformation.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
@@ -60,7 +73,14 @@ public class AddProductToBasketServlet extends HttpServlet {
             request.getRequestDispatcher(ServletURL.PRODUCT_INFORMATION + "?id=" + id).forward(request, response);
         }
     }
-
+    /**
+     * Method processes POST request for /addProductToBasket url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

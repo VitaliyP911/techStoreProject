@@ -19,18 +19,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /sorted url.
+ */
 @WebServlet(name = "SortedServlet", urlPatterns = ServletURL.SORTED)
 public class SortedServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(SortedServlet.class);
 
     private ProductService productService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         productService = new ProductServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /sorted url
+     * takes user - specified sorting options, sorts the directory, and
+     * returns filled catalog.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -72,7 +85,14 @@ public class SortedServlet extends HttpServlet {
             request.getRequestDispatcher(JspURL.CATALOG_PAGE).forward(request,response);
         }
     }
-
+    /**
+     * Method processes POST request for /sorted url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

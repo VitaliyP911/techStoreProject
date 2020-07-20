@@ -15,21 +15,43 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+/**
+ * Class processes requests for /login url.
+ */
 @WebServlet(name = "LoginServlet", urlPatterns = ServletURL.LOGIN)
 public class LoginServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginServlet.class);
     private UserService userService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /login url
+     * redirects on login.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher(JspURL.LOGIN_PAGE).forward(request,response);
     }
-
+    /**
+     * Method processes POST request for /login url
+     * takes parameters from the page, login user and
+     * returns home.jsp
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

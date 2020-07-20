@@ -20,19 +20,31 @@ import java.util.LinkedList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /getHistory url.
+ */
 @WebServlet(name = "GetHistoryServlet", urlPatterns = ServletURL.GET_HISTORY)
 public class GetHistoryServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GetHistoryServlet.class);
 
     private HistoryService historyService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         historyService = new HistoryServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /getHistory url
+     * fills in the shopping history table and returns the filled history.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -49,7 +61,14 @@ public class GetHistoryServlet extends HttpServlet {
             request.getRequestDispatcher(JspURL.PAY_PAGE).forward(request,response);
         }
     }
-
+    /**
+     * Method processes POST request for /getHistory url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

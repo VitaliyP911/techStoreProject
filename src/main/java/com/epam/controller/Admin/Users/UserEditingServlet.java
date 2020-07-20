@@ -17,24 +17,43 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /userEditing url.
+ */
 @WebServlet(name = "UserEditingServlet", urlPatterns = ServletURL.USER_EDITING)
 public class UserEditingServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserEditingServlet.class);
 
     private UserService userService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /userEditing url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher(ServletURL.USERS).forward(request, response);
     }
-
+    /**
+     * Method processes POST request for /userEditing url
+     * updates user data in the database and redirects on users servlet.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

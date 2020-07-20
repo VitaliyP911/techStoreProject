@@ -18,19 +18,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /deleteProductWithBasket url.
+ */
 @WebServlet(name = "DeleteProductWithBasketServlet", urlPatterns = ServletURL.DELETE_PRODUCT_WITH_BASKET)
 public class DeleteProductWithBasketServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DeleteProductWithBasketServlet.class);
 
     private BasketService basketService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         basketService = new BasketServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /deleteProductWithBasket url
+     * deletes the selected product and returns basket.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
@@ -51,7 +63,14 @@ public class DeleteProductWithBasketServlet extends HttpServlet {
             request.getRequestDispatcher(ServletURL.BASKET).forward(request, response);
         }
     }
-
+    /**
+     * Method processes POST request for /deleteProductWithBasket url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

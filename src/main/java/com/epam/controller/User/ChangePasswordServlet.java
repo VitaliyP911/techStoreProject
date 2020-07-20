@@ -15,23 +15,44 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /changePassword url.
+ */
 @WebServlet(name = "ChangePasswordServlet", urlPatterns = ServletURL.CHANGE_PASSWORD)
 public class ChangePasswordServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(ChangePasswordServlet.class);
 
     private UserService userService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /changePassword url
+     * redirects on changePassword.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher(JspURL.CHANGE_PASSWORD_PAGE).forward(request,response);
     }
-
+    /**
+     * Method processes POST request for /changePassword url
+     * takes parameters from the page, changes the password and
+     * returns changePassword.jsp
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

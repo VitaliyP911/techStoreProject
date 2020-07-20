@@ -17,19 +17,31 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /productEditing url.
+ */
 @WebServlet(name = "ProductEditingServlet", urlPatterns = ServletURL.PRODUCT_EDITING)
 public class ProductEditingServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductEditingServlet.class);
 
     private ProductService productService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         productService = new ProductServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /productEditing url
+     * updates product data in the database and redirects on products servlet.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -74,7 +86,14 @@ public class ProductEditingServlet extends HttpServlet {
             request.getRequestDispatcher(ServletURL.PRODUCT_EDITING).forward(request, response);
         }
     }
-
+    /**
+     * Method processes POST request for /productEditing  url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

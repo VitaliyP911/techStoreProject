@@ -4,10 +4,8 @@ import com.epam.constant.JspURL;
 import com.epam.constant.ServletURL;
 import com.epam.entity.Category;
 import com.epam.entity.Product;
-import com.epam.entity.User;
 import com.epam.exception.IncorrectDataException;
 import com.epam.exception.NotSaveException;
-import com.epam.exception.NotUpdateException;
 import com.epam.service.ProductService;
 import com.epam.service.impl.ProductServiceImpl;
 
@@ -16,23 +14,35 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /addNewProduct url.
+ */
 @WebServlet(name = "AddNewProductServlet", urlPatterns = ServletURL.ADD_NEW_PRODUCT)
 public class AddNewProductServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AddNewProductServlet.class);
 
     private ProductService productService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         productService = new ProductServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /addNewProduct url
+     * adds a new product to the database and
+     * redirects on products servlet.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -70,7 +80,14 @@ public class AddNewProductServlet extends HttpServlet {
             request.getRequestDispatcher(JspURL.HOME_PAGE).forward(request, response);
         }
     }
-
+    /**
+     * Method processes POST request for /addNewProduct url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

@@ -18,19 +18,31 @@ import java.io.IOException;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /basket url.
+ */
 @WebServlet(name = "BasketServlet", urlPatterns = ServletURL.BASKET)
 public class BasketServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BasketServlet.class);
 
     private UserService userService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /basket url
+     * fills the shopping basket table and returns filled basket.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -47,7 +59,14 @@ public class BasketServlet extends HttpServlet {
             request.getRequestDispatcher(JspURL.BASKET_PAGE).forward(request, response);
         }
     }
-
+    /**
+     * Method processes POST request for /basket url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

@@ -15,23 +15,44 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /registration url.
+ */
 @WebServlet(name = "RegistrationServlet", urlPatterns = ServletURL.REGISTRATION)
 public class RegistrationServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationServlet.class);
 
     private UserService userService;
-
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /registration url
+     * redirects on registration.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher(JspURL.REGISTRATION_PAGE).forward(request,response);
     }
-
+    /**
+     * Method processes POST request for /registration url
+     * takes parameters from the page, registers a new user and
+     * returns registration.jsp
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

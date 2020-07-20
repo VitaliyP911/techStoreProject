@@ -19,19 +19,31 @@ import java.io.IOException;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+/**
+ * Class processes requests for /dataUser url.
+ */
 @WebServlet(name = "DataUserServlet", urlPatterns = ServletURL.DATA_USER)
 public class DataUserServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DataUserServlet.class);
-
+    /**
+     * Method initializes required resources.
+     */
     private UserService userService;
 
     @Override
     public void init() throws ServletException {
         userService = new UserServiceImpl();
     }
-
+    /**
+     * Method processes GET request for /dataUser url
+     * sets page attributes and returns filled userEditing.jsp.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -48,7 +60,14 @@ public class DataUserServlet extends HttpServlet {
             request.getRequestDispatcher(JspURL.USERS_PAGE).forward(request,response);
         }
     }
-
+    /**
+     * Method processes POST request for /dataUser url
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
