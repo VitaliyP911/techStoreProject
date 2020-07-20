@@ -12,21 +12,39 @@ import java.util.Set;
 public class BasketServiceImpl implements BasketService {
 
     private CrudDaoImpl<Product> productCrudDao;
-
+    /**
+     * Default constructor.
+     */
     public BasketServiceImpl() {
         productCrudDao = new ProductDaoImpl();
     }
-
+    /**
+     * Method getting product data.
+     *
+     * @param id
+     * @return Optional object
+     */
     @Override
     public Optional<Product> getProduct(Long id) {
         return productCrudDao.getById(id);
     }
-
+    /**
+     * Method getting user basket.
+     *
+     * @param user
+     * @return basket list
+     */
     @Override
     public Set<Product> getBasketList(User user) {
         return user.getProductList();
     }
-
+    /**
+     * Method for add the product to the basket.
+     *
+     * @param product
+     * @param user
+     * @return true if the product is added to the basket
+     */
     @Override
     public boolean addNewProductToBasket(Product product, User user) {
         try {
@@ -45,12 +63,23 @@ public class BasketServiceImpl implements BasketService {
             return false;
         }
     }
-
+    /**
+     * Method for removing the product from the cart.
+     *
+     * @param product
+     * @param user
+     * @return true if the product is removed from the cart
+     */
     @Override
     public boolean deleteProductWithBasket(Product product, User user) {
         return user.getProductList().remove(product);
     }
-
+    /**
+     * Method for clearing user basket.
+     *
+     * @param user
+     * @return true if cleared basket
+     */
     @Override
     public boolean clearBasket(User user) {
         try {
@@ -60,9 +89,14 @@ public class BasketServiceImpl implements BasketService {
             return false;
         }
     }
-
+    /**
+     * Method getting receiving amounts for payment.
+     *
+     * @param user
+     * @return calculated amount
+     */
     @Override
-    public Integer countAmountDue(User user) {
+    public Integer calcAmountDue(User user) {
         return user.getProductList().stream().mapToInt(i -> i.getCount() * i.getPrice()).sum();
     }
 }

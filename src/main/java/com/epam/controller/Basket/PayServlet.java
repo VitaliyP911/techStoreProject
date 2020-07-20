@@ -48,7 +48,7 @@ public class PayServlet extends HttpServlet {
 
             request.setAttribute("basket", user.getProductList());
 
-            request.setAttribute("amountDue", basketService.countAmountDue(user));
+            request.setAttribute("amountDue", basketService.calcAmountDue(user));
 
             LOGGER.info("Subtracted data for payment");
 
